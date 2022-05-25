@@ -20,17 +20,12 @@ const movieSchema = new mongoose.Schema({
     required: true,
     min: 1900,
   },
-  genres: [String],
+
   duration: {
     type: Number,
     required: true,
     min: 1,
   },
-  rating: {
-    type: Number,
-    min: 0,
-  },
-  characters: [String],
 })
 
 export default mongoose.model<MovieDocument>('Movie', movieSchema)

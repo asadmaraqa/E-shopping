@@ -8,6 +8,7 @@ export type UserDocument = Document & {
   phone: number
   email: string
   role: boolean
+  isBanned: boolean
   orders: [string]
 }
 
@@ -52,6 +53,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     enum: ['user', 'admin'],
     default: 'user',
+    required: true,
+  },
+  isBanned: {
+    type: Boolean,
+    default: false,
     required: true,
   },
   orders: {

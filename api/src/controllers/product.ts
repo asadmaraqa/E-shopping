@@ -65,6 +65,7 @@ export const create = async (
       variants,
       sizes,
       img,
+      isBanned,
     } = req.body
     const product = new Product({
       name,
@@ -75,6 +76,7 @@ export const create = async (
       variants,
       sizes,
       img,
+      isBanned,
     })
     await ProductService.create(product)
     res.json(product)

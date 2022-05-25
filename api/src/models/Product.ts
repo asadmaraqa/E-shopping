@@ -30,7 +30,10 @@ const productSchema = new mongoose.Schema({
     required: true,
   },
   categories: [String],
-  variants: [String],
+  variants: {
+    type: String,
+    enum: ['xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl'],
+  },
   sizes: [String],
   img: {
     type: String,

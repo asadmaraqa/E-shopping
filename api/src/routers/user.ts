@@ -1,5 +1,6 @@
 import express from 'express'
 import {
+  findAll,
   createUser,
   findById,
   updateUser,
@@ -8,6 +9,7 @@ import {
 
 const router = express.Router()
 
+router.get('/', findAll)
 router.post('/', createUser)
 router.get('/:userId', findById)
 router.put('/:userId', updateUser)

@@ -10,7 +10,7 @@ export const createUser = async (
   next: NextFunction
 ) => {
   try {
-    const { firstName, secondName, address, phone, email, role, orders } =
+    const { firstName, secondName, address, phone, email, role, order } =
       req.body
 
     const user = new User({
@@ -20,11 +20,27 @@ export const createUser = async (
       phone,
       email,
       role,
-      orders,
+      order,
     })
 
     await UserService.create(user)
     res.json(user)
+  } catch (error) {
+    if (error instanceof Error && error.name == 'ValidationError') {
+      next(new BadRequestError('Invalid Request', error))
+    } else {
+      next(error)
+    }
+  }
+}
+
+export const findAll = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    res.json(await UserService.findAll())
   } catch (error) {
     if (error instanceof Error && error.name == 'ValidationError') {
       next(new BadRequestError('Invalid Request', error))

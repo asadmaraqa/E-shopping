@@ -5,8 +5,12 @@ const create = async (user: UserDocument): Promise<UserDocument> => {
   return user.save()
 }
 
+const findAll = async (): Promise<UserDocument[]> => {
+  return User.find().sort({ name: 1 }).populate('order')
+}
+
 const findById = async (userId: string): Promise<UserDocument> => {
-  const foundUser = await User.findById(userId)
+  const foundUser = await User.findById(userId).populate('order')
 
   if (!foundUser) {
     throw new NotFoundError(`User ${userId} not found`)
@@ -39,6 +43,7 @@ const deleteUser = async (userId: string): Promise<UserDocument | null> => {
 }
 
 export default {
+  findAll,
   create,
   findById,
   update,

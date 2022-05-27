@@ -14,6 +14,20 @@ const findById = async (orderId: string): Promise<OrderDocument> => {
 
   return foundOrder
 }
+const findByNumber = async (orderNumber: number): Promise<OrderDocument[]> => {
+  const foundOrder = await Order.aggregate([
+    { $match: { number: orderNumber } },
+    { $sort: { number: 1 } },
+    { $project: { number: 1, createdAt: 1, user: 1, product: 1, _id: 0 } },
+  ])
+
+  if (!foundOrder) {
+    throw new NotFoundError(`Order ${orderNumber} not found`)
+  }
+
+  return foundOrder
+}
+
 const update = async (
   orderId: string,
   update: Partial<OrderDocument>
@@ -43,4 +57,5 @@ export default {
   findById,
   update,
   deleteOrder,
+  findByNumber,
 }

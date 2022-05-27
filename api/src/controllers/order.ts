@@ -29,6 +29,22 @@ export const createOrder = async (
   }
 }
 
+export const findByNumber = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    res.json(await OrderService.findByNumber(parseInt(req.params.orderNumber)))
+  } catch (error) {
+    if (error instanceof Error && error.name == 'ValidationError') {
+      next(new BadRequestError('Invalid Request', error))
+    } else {
+      next(error)
+    }
+  }
+}
+
 export const findById = async (
   req: Request,
   res: Response,

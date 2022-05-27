@@ -2,7 +2,7 @@ import express from 'express'
 // import lusca from 'lusca' will be used later
 import dotenv from 'dotenv'
 
-import movieRouter from './routers/movie'
+import cors from 'cors'
 import productRouter from './routers/product'
 import userRouter from './routers/user'
 import orderRouter from './routers/order'
@@ -12,6 +12,7 @@ import apiContentType from './middlewares/apiContentType'
 dotenv.config({ path: '.env' })
 const app = express()
 
+app.use(cors())
 // Express configuration
 app.set('port', process.env.PORT || 3000)
 
@@ -20,7 +21,6 @@ app.use(apiContentType)
 app.use(express.json())
 
 // Set up routers
-app.use('/api/v1/movies', movieRouter)
 app.use('/api/v1/products', productRouter)
 app.use('/api/v1/users', userRouter)
 app.use('/api/v1/orders', orderRouter)

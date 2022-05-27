@@ -10,6 +10,7 @@ export type ProductDocument = Document & {
   variants: string[]
   sizes: string[]
   img: string
+  orders: string[]
 }
 
 const productSchema = new mongoose.Schema({
@@ -38,6 +39,10 @@ const productSchema = new mongoose.Schema({
   img: {
     type: String,
     required: false,
+  },
+  orders: {
+    type: [mongoose.Schema.Types.ObjectId],
+    ref: 'Order',
   },
 })
 

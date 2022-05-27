@@ -9,7 +9,7 @@ export type UserDocument = Document & {
   email: string
   role: boolean
   isBanned: boolean
-  order: string[]
+  orders: string[]
   createdAt: number
 }
 
@@ -64,7 +64,7 @@ const userSchema = new mongoose.Schema(
       default: false,
       required: true,
     },
-    order: {
+    orders: {
       type: [mongoose.Schema.Types.ObjectId],
       ref: 'Order',
     },

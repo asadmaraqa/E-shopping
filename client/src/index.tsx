@@ -12,6 +12,7 @@ import { loadUsers } from './redux/reducers/users';
 const store = configureStore();
 store.dispatch(loadproudcts())
 store.dispatch(loadUsers())
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

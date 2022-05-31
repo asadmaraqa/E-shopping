@@ -9,6 +9,7 @@ import { AppState } from '../../globalTypes';
 const Products = () => {
   const products = useSelector((state: AppState) => state.products.list)
   return (
+
     <Container >
       <Grid container spacing={5} justify-content="space-between">
         {products.map((product: any) =>
@@ -17,7 +18,6 @@ const Products = () => {
               <ProductCard {...product} key={product._id} />
             </Paper>
           </Grid>
-
         )}
       </Grid>
     </Container>

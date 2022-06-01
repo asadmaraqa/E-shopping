@@ -6,12 +6,13 @@ import SearchBar from './SearchBar'
 
 
 import { AppState } from '../../globalTypes'
+import Cart from '../Cart'
 
 const Header = () => {
   const [toggleMenu, setToggleMenu] = useState(false)
-  const [toggleLike, setToggleLike] = useState(false)
+  const [toggleCart, setToggleCart] = useState(false)
   const menuHandler = (): void => setToggleMenu(!toggleMenu)
-  const likeHandler = (): void => setToggleLike(!toggleLike)
+  const cartHandler = (): void => setToggleCart(!toggleCart)
 
 
   return (
@@ -30,8 +31,9 @@ const Header = () => {
           icon={faCartShopping}
           size="2x"
           className="header__icon-cart"
-          onClick={() => setToggleLike(!toggleLike)}
+          onClick={() => setToggleCart(!toggleCart)}
         />
+        {toggleCart ? <Cart /> : ''}
 
       </span>
     </header>

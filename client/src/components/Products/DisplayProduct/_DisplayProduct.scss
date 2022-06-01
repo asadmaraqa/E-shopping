@@ -1,0 +1,26 @@
+.product{
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr ;
+	grid-template-areas:
+	"image name"
+	"image categories"
+	"image price"
+	"image stock"
+	"image sizes"
+	"image variants"
+	"image button";
+
+	&__image{
+		grid-area:"image"
+	}
+	&__category{
+		grid-area:"categories";
+	}
+	&__price{
+		grid-area:"price";
+		color:grey;
+		font-weight: bold;
+
+	}
+}

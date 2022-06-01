@@ -7,7 +7,6 @@ const Signin=()=> {
   const [token, setToken] = useState('')
   console.log('token:', token)
   const handleSucess = async (googleResponse: any) => {
-   console.log(googleResponse)
     const tokenId = googleResponse.credential
     console.log('tokenId:', tokenId)
 

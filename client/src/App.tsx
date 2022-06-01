@@ -1,6 +1,6 @@
 
 import React from "react";
-import { BrowserRouter,Routes, Route, useParams } from "react-router-dom";
+import { BrowserRouter,Routes, Route } from "react-router-dom";
 
 import "./App.css";
 import Home from "./pages/Home";
@@ -9,7 +9,6 @@ import Signin from "./pages/Signin";
 
 
 function App() {
-  let { id } = useParams();
 
   return (
     <BrowserRouter>

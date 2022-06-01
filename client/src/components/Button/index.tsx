@@ -9,7 +9,7 @@ const Button = ({ title, onClick, disable }: buttonProps) => {
   return (
     <button
       className={disable ? 'button__disable' : 'button'}
-      onClick={() => onClick?.()}
+      onClick={(e) => {e.preventDefault(); e.stopPropagation()}}
     >
       {title}
     </button>

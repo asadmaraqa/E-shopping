@@ -42,10 +42,19 @@ const deleteUser = async (userId: string): Promise<UserDocument | null> => {
   return foundUser
 }
 
+const findOne = async (email: string): Promise<UserDocument | null> => {
+  console.log('email:', email)
+  return User.findOne({ email })
+}
+const save = async (product: UserDocument): Promise<UserDocument> => {
+  return product.save()
+}
 export default {
   findAll,
   create,
   findById,
   update,
   deleteUser,
+  findOne,
+  save,
 }

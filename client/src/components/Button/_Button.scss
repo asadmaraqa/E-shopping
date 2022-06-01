@@ -1,0 +1,33 @@
+
+
+.button {
+  background-color: green;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  font-size: 16px;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  width: fit-content;;
+  cursor: pointer;
+  touch-action: manipulation;
+  white-space: nowrap;
+  margin-top: 20px;
+  align-items: center;
+
+  &:hover {
+    background-color: greenyellow;
+  }
+  &__disable{
+    background-color: grey;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  font-size: 16px;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  width: fit-content;;
+  touch-action: manipulation;
+  white-space: nowrap;
+  margin-top: 20px;
+  align-items: center;
+  }
+}

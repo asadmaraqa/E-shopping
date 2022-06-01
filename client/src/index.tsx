@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import configureStore from "./redux/store";
 import { loadproudcts } from './redux/reducers/products';
 import { loadUsers } from './redux/reducers/users';
-
+import "./sass/_main.scss"
 const store = configureStore();
 store.dispatch(loadproudcts())
 store.dispatch(loadUsers())

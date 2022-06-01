@@ -14,9 +14,9 @@ const Products = () => {
       <Grid container spacing={5} justify-content="space-between">
         {products.map((product: any) =>
           <Grid item xs={12} sm={6} md={3} lg={4}>
-            <Paper>
+
               <ProductCard {...product} key={product._id} />
-            </Paper>
+
           </Grid>
         )}
       </Grid>

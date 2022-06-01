@@ -1,0 +1,47 @@
+
+.header {
+  display: grid;
+  grid-template-columns: 0.2fr 1fr 1fr 0.1fr;
+  justify-content: space-between;
+  background-color: "white";
+  padding: 20px;
+  width: 90vw;
+
+
+  &__icon-menu {
+    flex-grow: 1;
+    color: black;
+    padding-right: 20px;
+  }
+
+  &__icon-menu:hover {
+    color: yellowgreen;
+  }
+
+  &__icon-cart {
+    color: lightgray;
+  }
+
+  &__icon-cart:hover {
+    color: lightseagreen;
+  }
+
+  &__toggle {
+    position: absolute;
+    background-color: white;
+
+    top: 60px;
+    padding: 20px;
+
+    li {
+      padding: 20px;
+    }
+  }
+
+  &__badge {
+    background-color: black;
+    font-size: 45px;
+    font-weight: bold;
+  }
+
+}

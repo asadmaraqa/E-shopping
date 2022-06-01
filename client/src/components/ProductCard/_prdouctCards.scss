@@ -1,0 +1,23 @@
+.card {
+  flex-grow: 1;
+  padding: 20px;
+  text-align: center;
+  width: 300px;
+  background-color: lightgray;
+  margin: 20px;
+  box-shadow: 1px 1px 2px 1px #888888;
+
+  &:hover {
+    background-color: rgb(59, 218, 210);
+  }
+
+  &__image {
+
+    width: 100%;
+    align-self: center;
+  }
+
+  &__content {
+    grid: content
+  }
+}

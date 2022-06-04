@@ -3,4 +3,8 @@
 @use "../components/AppBar/AppBar";
 @use "../components/ProductCard/prdouctCards";
 @use "../components/Button/Button";
-@use "../components/Products/DisplayProduct/DisplayProduct"
+@use "../components/Products/DisplayProduct/DisplayProduct";
+@use "../components/Cart/Cart";
+@use "../components/Products/Products";
+@use "../components/Cart/CartItem/CartItem";
+

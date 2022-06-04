@@ -6,6 +6,7 @@ type buttonProps = {
   disable?: boolean
 }
 const Button = ({ title, onClick, disable }: buttonProps) => {
+  
   return (
     <button
       className={disable ? 'button__disable' : 'button'}

@@ -1,19 +1,24 @@
+import React from "react"
+import { useNavigate} from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
-import React from 'react'
-import { useNavigate } from 'react-router-dom';
-
-import { useSelector } from 'react-redux';
 import { AppState, productTypes } from "../../../globalTypes";
 import Button from '../../Button';
+import { productAdded } from '../../../redux/slices/cart';
+
 
 const DisplayProduct = () => {
-  const product = useSelector((state: AppState) => state.products.list)
-  const { name, price, stock, sizes, variants, categories,description }: any = product
-  let navigate = useNavigate();
+
+  const products= useSelector((state: any) => state.products.listOne)
+  const {name,_id:id,price,categories,stock,sizes,variants,description}=products
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   return (
     <section style={{ width: "80vw" }}>
-      <Button title="go back" onClick={() => navigate(-1)} />
+        
+      <Button title='Go back' onClick={()=>navigate("/")}/>
       <div className="product" key={name}>
         <div>
           <img src="https://picsum.photos/400" alt={name} className="product__image" />
@@ -36,7 +41,7 @@ const DisplayProduct = () => {
               <option value={variant} key={variant}>{variant}</option>)}
           </select>
           <p>{description}</p>
-          <div> <Button title="Add to cart" /></div>
+          <div> <Button title='Add to cart'  onClick={()=>dispatch(productAdded({name,id,price}))} /></div>
         </div>
       </div>
     </section>

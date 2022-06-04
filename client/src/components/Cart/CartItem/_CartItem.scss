@@ -1,0 +1,23 @@
+.cartItem {
+  &__price {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  &__controlers {
+    display: flex;
+    justify-content: space-around;
+
+    button {
+      background-color: grey;
+      padding: 5px;
+    }
+
+    p {
+      border: 2px solid grey;
+      align-self: center;
+      padding: 5px;
+    }
+  }
+}

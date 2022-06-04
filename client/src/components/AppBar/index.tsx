@@ -7,12 +7,14 @@ import SearchBar from './SearchBar'
 
 import { AppState } from '../../globalTypes'
 import Cart from '../Cart'
+import { useSelector } from 'react-redux'
 
 const Header = () => {
   const [toggleMenu, setToggleMenu] = useState(false)
   const [toggleCart, setToggleCart] = useState(false)
   const menuHandler = (): void => setToggleMenu(!toggleMenu)
   const cartHandler = (): void => setToggleCart(!toggleCart)
+  const quantity = useSelector((state: any) => state.cart.totalquantity)
 
 
   return (
@@ -33,7 +35,9 @@ const Header = () => {
           className="header__icon-cart"
           onClick={() => setToggleCart(!toggleCart)}
         />
-        {toggleCart ? <Cart /> : ''}
+               <span className="fa-layers-counter header__badge">{quantity}</span>
+
+        {toggleCart ? <Cart onClick={cartHandler}/> : ''}
 
       </span>
     </header>

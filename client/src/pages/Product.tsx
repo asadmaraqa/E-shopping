@@ -1,28 +1,23 @@
 
 import React from 'react'
-import configureStore from "../redux/store";
 import { useParams } from "react-router-dom"
-import { getById } from '../redux/reducers/products';
-import { Provider } from 'react-redux';
+import { useDispatch } from 'react-redux';
+
+import { getByIda } from '../redux/slices/products';
 import AppBar from '../components/AppBar';
-
-
 import DisplayProduct from "../components/Products/DisplayProduct"
+
 const Product = () => {
   const { productId } = useParams();
 
-  const store = configureStore();
-  store.dispatch(getById(productId))
-
+  const dispatch = useDispatch()
+  dispatch(getByIda(productId))
 
   return (
-
-    <Provider store={store}>
-      <div className="page">
-        <AppBar />
-        <DisplayProduct />
-      </div>
-    </Provider>
+    <div className="page">
+      <AppBar />
+      <DisplayProduct />
+    </div>
 
   )
 }

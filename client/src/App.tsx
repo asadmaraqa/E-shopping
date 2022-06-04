@@ -1,15 +1,19 @@
 
 import React from "react";
-import { BrowserRouter,Routes, Route } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import "./App.css";
 import Home from "./pages/Home";
 import Product from "./pages/Product";
 import Signin from "./pages/Signin";
+import { loadproudcts } from "./redux/slices/products";
 
 
 function App() {
+  const dispatch = useDispatch()
 
+  dispatch(loadproudcts())
   return (
     <BrowserRouter>
       <Routes>

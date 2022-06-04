@@ -1,0 +1,42 @@
+.cart {
+  position: absolute;
+  background-color: white;
+  top: 60px;
+  right: 5px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 1fr);
+  box-shadow: 1px 1px 2px 1px #888888;
+
+  li {
+    padding: 30px;
+    display: flex;
+    width: 200px;
+    justify-content: center;
+    display:grid
+  }
+
+  &__icon-trash {
+    position: relative !important;
+    display: flex;
+    padding-left: 50px;
+
+    &:hover {
+      color: red;
+    }
+  }
+
+  &__icon-close {
+    margin: unset !important;
+    left: unset !important;
+    padding: 5px;
+  }
+
+  &__image {
+    width: 50px;
+  }
+
+  &__text {
+    white-space: nowrap;
+  }
+
+}

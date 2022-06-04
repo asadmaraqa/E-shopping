@@ -4,7 +4,8 @@ import { apiCallBegan } from "../actions/api";
 const slice = createSlice({
   name: "products",
   initialState: {
-    list: [],
+    listAll: [],
+    listOne:[],
     loading: false,
     lastFetch: null,
   },
@@ -17,17 +18,20 @@ const slice = createSlice({
 
     },
     productsReceived: (products, action) => {
-      products.list = action.payload;
+      products.listAll = action.payload;
       products.loading = false;
     },
-    getByIda: (products, action) =>{
-      products.list = action.payload;
+    getById: (products, action) =>{ 
+      
+
+      products.listOne = action.payload;
+      products.loading = false;
 
     }
   },
 });
 
-export const { productsReceived, productsRequested,productsRequestFailed,getByIda } = slice.actions;
+export const { productsReceived, productsRequested,productsRequestFailed,getById } = slice.actions;
 export default slice.reducer;
 
 const url = "/products";
@@ -40,12 +44,10 @@ export const loadproudcts = () =>
     onError:productsRequestFailed.type
   });
 
-  export const getById = (productId:any) =>
+  export const getByIda = (productId) =>
   apiCallBegan({
     url: url + "/" + productId,
     onStart: productsRequested.type,
-    onSuccess: productsReceived.type,
+    onSuccess: getById.type,
     onError:productsRequestFailed.type,
-    
-    
   });

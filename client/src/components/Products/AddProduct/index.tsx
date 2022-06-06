@@ -1,68 +1,66 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+
 import { addProudct } from '../../../redux/slices/products';
-import { MultiSelect } from "react-multi-select-component";
+import { inputs, selectedValue } from '../../../globalTypes';
+import { catergoryOptions, sizeOptions, variantOptions } from './options';
+import Select from './Select';
 
-const sizeOptions = [
-  { label: "s", value: "s" },
-  { label: "m ", value: "m" },
-  { label: "l ", value: "l" },
-];
-const catergoryOptions = [
-  { label: "Men", value: "s" },
-  { label: "women ", value: "m" },
-  { label: "Jeans", value: "l" },
-  { label: "Shirts", value: "l" },
-];
-const variantOptions = [
-  { label: "Green ", value: "green" },
-  { label: "Red", value: "red" },
-  { label: "Yellow", value: "yellow" },
-  { label: "Brown", value: "brown" },
-];
 const AddProduct = () => {
-  const products = useSelector((state: any) => state.products.listOne)
-  const { name, _id: id, price, categories, stock, sizes, variants, description } = products
-  const [inputs, setInputs] = useState<any>({
 
+  const [inputs, setInputs] = useState<inputs>({
+    name: "",
+    price: 0,
+    stock:0,
+    description:"",
+    sizes: [{ label: "", value: "" }],
+    variants: [{ label: "", value: "" }],
+    categories: [{ label: "", value: "" }],
   });
-
-  console.log(inputs)
 
   const [selectedSize, setSelectedSize] = useState([]);
   const [selectedVariant, setSelectedVariant] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState([]);
 
-  inputs.sizes = selectedSize.map((val: any) => val.value)
-  inputs.variants = selectedVariant.map((val: any) => val.value)
-  inputs.categories = selectedCategory.map((val: any) => val.value)
+  inputs.sizes = selectedSize.map((val: selectedValue) => val.value)
+  inputs.variants = selectedVariant.map((val: selectedValue) => val.value)
+  inputs.categories = selectedCategory.map((val: selectedValue) => val.value)
 
-  const handleChange = (event: any) => {
-    const name: any = event.target.name;
-    const value: any = event.target.value;
-    setInputs((values: any) => ({ ...values, [name]: value }))
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>|React.ChangeEvent<HTMLTextAreaElement>) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setInputs((values) => ({ ...values, [name]: value }))
   }
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     dispatch(addProudct(inputs))
   }
 
   const dispatch = useDispatch();
-  return (
 
+  return (
     <form onSubmit={handleSubmit} className="form">
-      <label>Product name:
+      <label>Name:
         <input
           type="text"
           name="name"
-          value={inputs.name || ""}
+          value={inputs.name}
           onChange={handleChange}
           placeholder="Product name"
           required
         />
       </label>
-      <label>Product price:
+      <label>Description:
+        <textarea
+          name="description"
+          value={inputs.description}
+          onChange={handleChange}
+          placeholder="Product description"
+          required
+        />
+      </label>
+      <label>Price:
         <input
           type="number"
           name="price"
@@ -72,36 +70,27 @@ const AddProduct = () => {
           onChange={handleChange}
         />
       </label>
-      <label>Product sizes:
-
-        <MultiSelect
-          options={sizeOptions}
-          value={selectedSize}
-          onChange={setSelectedSize}
-          labelledBy="Select size"
+      <label>Price:
+        <input
+          type="number"
+          name="stock"
+          value={inputs.stock || ""}
+          placeholder="Product stock"
+          required
+          onChange={handleChange}
         />
       </label>
-      <label>Product variants:
-
-        <MultiSelect
-          options={variantOptions}
-          value={selectedVariant}
-          onChange={setSelectedVariant}
-          labelledBy="Select variant"
-        />
-      </label>
-      <label>Product categories:
-
-        <MultiSelect
-          options={catergoryOptions}
-          value={selectedCategory}
-          onChange={setSelectedCategory}
-          labelledBy="Select categroy"
-        />
-      </label>
+      <Select options={sizeOptions} value={selectedSize}
+        onChange={setSelectedSize} labelledBy="Select size"
+        label="sizes:" />
+      <Select options={variantOptions} value={selectedVariant}
+        onChange={setSelectedVariant} labelledBy="Select variant"
+        label="Variants:" />
+      <Select options={catergoryOptions} value={selectedCategory}
+        onChange={setSelectedCategory} labelledBy="Select categroy"
+        label="Categories:" />
       <input type="submit" className='button' />
     </form>
-
   )
 }
 

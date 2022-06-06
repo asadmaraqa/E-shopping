@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useParams } from "react-router-dom"
 import { useDispatch } from 'react-redux';
 
@@ -11,8 +11,8 @@ const Product = () => {
   const { productId } = useParams();
 
   const dispatch = useDispatch()
-  dispatch(getByIda(productId))
 
+  useEffect(()=>{ dispatch(getByIda(productId))},[])
   return (
     <div className="page">
       <AppBar />

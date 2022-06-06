@@ -9,7 +9,7 @@ import { productAdded } from '../../redux/slices/cart';
 
 import Button from '../Button';
 
-const ProductCard = ({ name, description, price, _id:id }: any) => {
+const ProductCard = ({ name, description, price, _id:id }: productTypes) => {
   const dispatch = useDispatch();
   const incrementCartItem=()=>{
     dispatch(productAdded({

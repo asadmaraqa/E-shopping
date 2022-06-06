@@ -1,17 +1,16 @@
 import React from "react"
 import { useSelector } from 'react-redux';
 import ProductCard from '../ProductCard'
-import Container from '@mui/material/Container';
-import { AppState } from '../../globalTypes';
+import { AppState, productTypes } from '../../globalTypes';
 
 
 
 const Products = () => {
-  const products = useSelector((state: any) => state.products.listAll)
-
+  const porducts = useSelector((state: AppState) => state.products)
+ 
   return (
     <div className="products">
-        {products.map((product: any) =>
+        {!porducts.loading&&porducts.listAll.map((product: productTypes) =>
               <ProductCard {...product} key={product._id} />
         )}
 

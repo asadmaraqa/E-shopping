@@ -9,8 +9,8 @@ import { productAdded } from '../../../redux/slices/cart';
 
 const DisplayProduct = () => {
 
-  const products= useSelector((state: any) => state.products.listOne)
-  const {name,_id:id,price,categories,stock,sizes,variants,description}=products
+  const products= useSelector((state: AppState) => state.products.listOne) 
+  const {name,_id:id,price,categories,stock,sizes,variants,description}:any=products
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
@@ -26,18 +26,18 @@ const DisplayProduct = () => {
         </div>
         <div className="product_content">
           <h2 className="product__name">{name}</h2>
-          {categories?.map((category: string) =>
+          {categories?.map((category:string) =>
             <h3 className="product__category" key={category}>{category}</h3>)}
           <p className="product__price">Price: € {price} </p>
           <h3 className="product__stock">In stock: {stock}</h3>
           <h3>Sizes: </h3>
           <select className="product__sizes">
-            {sizes?.map((size: string) =>
+            {sizes?.map((size:string) =>
               <option value={size} key={size}>{size}</option>)}
           </select>
           <h3>Variants: </h3>
           <select className="product__sizes">
-            {variants?.map((variant: string) =>
+            {variants?.map((variant:string) =>
               <option value={variant} key={variant}>{variant}</option>)}
           </select>
           <p>{description}</p>

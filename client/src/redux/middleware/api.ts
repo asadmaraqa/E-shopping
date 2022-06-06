@@ -1,11 +1,13 @@
 import axios from "axios";
-import { actionTypes } from "../../globalTypes";
+import { Dispatch } from "redux";
+import { actionApiType, actionTypes } from "../../globalTypes";
 import * as actions from "../actions/api";
 
+
 const api =
-  ({ dispatch }) =>
-  (next) =>
-  async (action) => {
+  ({ dispatch }:any) =>
+  (next:Dispatch) =>
+  async (action: actionApiType) => {
     console.log(action.type)
     if (action.type !== actions.apiCallBegan.type) return next(action);
 
@@ -20,7 +22,7 @@ const api =
         data,
       });
       dispatch({ type: onSuccess, payload: response.data });
-    } catch (error) {
+    } catch (error:any) {
       dispatch(actions.apiCallFailed(error.message));
       if (onError) dispatch({ type: onError, payload: error.message });
     }

@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { apiCallBegan } from "../actions/api";
+import api from "../middleware/api";
 
 const slice = createSlice({
   name: "products",
@@ -22,16 +23,18 @@ const slice = createSlice({
       products.loading = false;
     },
     getById: (products, action) =>{ 
-      
-
       products.listOne = action.payload;
+      products.loading = false;
+    },
+    productUploaded:(products,action)=>{
+      products.listAll.push(action.payload)
       products.loading = false;
 
     }
   },
 });
 
-export const { productsReceived, productsRequested,productsRequestFailed,getById } = slice.actions;
+export const { productsReceived, productsRequested,productsRequestFailed,getById, productUploaded} = slice.actions;
 export default slice.reducer;
 
 const url = "/products";
@@ -51,3 +54,14 @@ export const loadproudcts = () =>
     onSuccess: getById.type,
     onError:productsRequestFailed.type,
   });
+
+  export const addProudct=(product)=>
+    apiCallBegan({
+      url,
+      method:"post",
+      data: product,
+      onStart: productsRequested.type,
+      onSuccess:productUploaded.type
+
+    })
+  

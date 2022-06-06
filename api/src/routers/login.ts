@@ -27,5 +27,18 @@ router.post(
     res.json({ token })
   }
 )
+router.get(
+  '/me',
+  passport.authenticate('google-id-token', { session: false }),
+  (req, res) => {
+    const user = req.user as any
+
+    const token = jwt.sign({ email: user.email, role: user.role }, JWT_SECRET, {
+      expiresIn: '1h',
+    })
+    res.json({ token })
+    console.log(token)
+  }
+)
 
 export default router

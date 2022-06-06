@@ -43,6 +43,7 @@ const DisplayProduct = () => {
           <p>{description}</p>
           <div> <Button title='Add to cart'  onClick={()=>dispatch(productAdded({name,id,price}))} /></div>
         </div>
+        
       </div>
     </section>
   )

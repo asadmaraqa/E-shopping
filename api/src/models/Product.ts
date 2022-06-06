@@ -20,22 +20,19 @@ const productSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    required: true,
   },
   price: {
     type: Number,
-    required: true,
   },
   stock: {
     type: Number,
-    required: true,
   },
   categories: [String],
-  variants: {
-    type: String,
+  sizes: {
+    type: [String],
     enum: ['xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl'],
   },
-  sizes: [String],
+  variants: [String],
   img: {
     type: String,
     required: false,

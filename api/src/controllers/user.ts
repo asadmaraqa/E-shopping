@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 
-import User from '../models/User'
+import User, { UserDocument } from '../models/User'
 import UserService from '../services/user'
 import { BadRequestError } from '../helpers/apiError'
 
@@ -92,10 +92,6 @@ export const deleteUser = async (
   try {
     await UserService.deleteUser(req.params.userId)
 
-    /*for the future validation
-    if (req.body.role === 'user') {
-      res.status(403).send('Access denied')
-    }else { res.status(204).end()}*/
     res.status(204).end()
   } catch (error) {
     if (error instanceof Error && error.name == 'ValidationError') {
@@ -104,4 +100,9 @@ export const deleteUser = async (
       next(error)
     }
   }
+}
+
+export const findOne = async (email: string): Promise<UserDocument | null> => {
+  return UserService.findOne(email)
+  console.log(UserService.findOne(email))
 }

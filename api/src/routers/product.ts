@@ -1,4 +1,5 @@
 import express from 'express'
+import verifyAuth from '../middlewares/verifyAuth'
 import {
   create,
   deleteProduct,

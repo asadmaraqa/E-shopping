@@ -3,9 +3,10 @@ import { actionTypes } from "../../globalTypes";
 import * as actions from "../actions/api";
 
 const api =
-  ({ dispatch }: any) =>
-  (next: Function) =>
-  async (action: actionTypes) => {
+  ({ dispatch }) =>
+  (next) =>
+  async (action) => {
+    console.log(action.type)
     if (action.type !== actions.apiCallBegan.type) return next(action);
 
     const { url, method, data, onSuccess, onError, onStart } = action.payload;
@@ -19,7 +20,7 @@ const api =
         data,
       });
       dispatch({ type: onSuccess, payload: response.data });
-    } catch (error: any) {
+    } catch (error) {
       dispatch(actions.apiCallFailed(error.message));
       if (onError) dispatch({ type: onError, payload: error.message });
     }

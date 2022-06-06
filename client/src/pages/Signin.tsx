@@ -35,9 +35,7 @@ const Signin=()=> {
         },
       })
       console.log(response)
-      //console.log('response:', response.data)
     } catch (error: any) {
-      //console.log('error:', error.response.data)
     }
   }
   return (

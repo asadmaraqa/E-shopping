@@ -5,12 +5,15 @@ import {
   findById,
   updateUser,
   deleteUser,
+  findOne,
 } from '../controllers/user'
 
 const router = express.Router()
 
 router.get('/', findAll)
 router.post('/', createUser)
+router.get('/me', findOne)
+
 router.get('/:userId', findById)
 router.put('/:userId', updateUser)
 router.delete('/:userId', deleteUser)

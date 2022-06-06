@@ -20,7 +20,6 @@ const loginWithGoogle = () => {
       try {
         let userTest = await UserService.findOne(parsedToken.payload.email)
         console.log('isUserExists:', !!userTest)
-        console.log()
         if (!userTest) {
           userTest = {
             firstName: parsedToken.payload.given_name,

@@ -8,6 +8,7 @@ import SearchBar from './SearchBar'
 import { AppState } from '../../globalTypes'
 import Cart from '../Cart'
 import { useSelector } from 'react-redux'
+import Menu from './Menu'
 
 const Header = () => {
   const [toggleMenu, setToggleMenu] = useState(false)
@@ -35,11 +36,12 @@ const Header = () => {
           className="header__icon-cart"
           onClick={() => setToggleCart(!toggleCart)}
         />
-               <span className="fa-layers-counter header__badge">{quantity}</span>
+        <span className="fa-layers-counter header__badge">{quantity}</span>
 
-        {toggleCart ? <Cart onClick={cartHandler}/> : ''}
+        {toggleCart ? <Cart onClick={cartHandler} /> : ''}
 
       </span>
+      {toggleMenu && <Menu onClick={menuHandler} />}
     </header>
   )
 }

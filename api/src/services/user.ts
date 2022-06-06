@@ -43,7 +43,6 @@ const deleteUser = async (userId: string): Promise<UserDocument | null> => {
 }
 
 const findOne = async (email: string): Promise<UserDocument | null> => {
-  console.log('email:', email)
   return User.findOne({ email })
 }
 const save = async (product: UserDocument): Promise<UserDocument> => {

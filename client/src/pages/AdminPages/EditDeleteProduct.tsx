@@ -3,7 +3,6 @@ import AppBar from "../../components/AppBar"
 import ProductTable from '../../components/Products/ProductTable'
 
 const EditDeleteProduct = () => {
-
   return (
     <div className="page"  >
       <AppBar />

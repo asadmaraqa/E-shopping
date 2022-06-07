@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { apiCallBegan } from "../actions/api";
 
-
 type productSliceTypes={
   listAll:object[]
   loading:boolean
@@ -12,7 +11,6 @@ const slice = createSlice({
     listAll: [],
     listOne:[],
     loading: false,
-    lastFetch: null,
   },
   reducers: {
     productsRequested: (products, action) => {

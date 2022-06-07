@@ -6,7 +6,6 @@ const slice = createSlice({
   initialState: {
     list: [],
     loading: false,
-    lastFetch: null,
   },
   reducers: {
     usersRequested: (users, action) => {

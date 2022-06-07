@@ -9,7 +9,7 @@ import { productAdded } from '../../redux/slices/cart';
 
 import Button from '../Button';
 
-const ProductCard = ({ name, description, price, _id:id }: productTypes) => {
+const ProductCard = ({ name, description, price, _id:id,img }: productTypes) => {
   const dispatch = useDispatch();
   const incrementCartItem=()=>{
     dispatch(productAdded({
@@ -23,7 +23,7 @@ const ProductCard = ({ name, description, price, _id:id }: productTypes) => {
   return (
     <Link to={`/product/${id}`} style={{ textDecoration: 'none' }}  >
       <div className="card" key={id} >
-        <img src="https://picsum.photos/200" alt={name} className="card__image" />
+        <img src={`/images/${img}`} alt={name} className="card__image" />
         <div>
           <h2 className="card__name">{name}</h2>
         </div>

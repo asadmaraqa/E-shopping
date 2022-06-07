@@ -17,18 +17,15 @@ const productSchema = new mongoose.Schema({
   name: {
     type: String,
     index: true,
-    required: true,
   },
   description: {
     type: String,
   },
   price: {
     type: Number,
-    required: true,
   },
   stock: {
     type: Number,
-    required: true,
   },
   categories: [String],
   sizes: {
@@ -38,7 +35,6 @@ const productSchema = new mongoose.Schema({
   variants: [String],
   img: {
     type: String,
-    required: false,
   },
   orders: {
     type: [mongoose.Schema.Types.ObjectId],

@@ -33,8 +33,10 @@ const slice = createSlice({
     productUploaded:(products:productSliceTypes,action)=>{
       products.listAll.push(action.payload)
       products.loading = false;
+      console.log(products.listAll)
+      console.log(action.payload)
+    },
 
-    }
   },
 });
 
@@ -63,9 +65,11 @@ export const loadproudcts = () =>
     apiCallBegan({
       url,
       method:"post",
+
       data: product,
       onStart: productsRequested.type,
       onSuccess:productUploaded.type
-
     })
+
+  
   

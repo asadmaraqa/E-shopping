@@ -1,3 +1,4 @@
+/* eslint-disable no-dupe-keys */
 import axios from "axios";
 import { Dispatch } from "redux";
 import { actionApiType, actionTypes } from "../../globalTypes";
@@ -8,10 +9,10 @@ const api =
   ({ dispatch }:any) =>
   (next:Dispatch) =>
   async (action: actionApiType) => {
-    console.log(action.type)
+    
     if (action.type !== actions.apiCallBegan.type) return next(action);
 
-    const { url, method, data, onSuccess, onError, onStart } = action.payload;
+    const { url, method,data, onSuccess, onError, onStart } = action.payload;
     if(onStart) dispatch({type:onStart})
     next(action);
     try {

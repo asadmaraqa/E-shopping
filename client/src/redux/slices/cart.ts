@@ -24,7 +24,6 @@ const slice = createSlice({
   reducers: {
     productAdded: (cart:cartTypes, action) => {
       const newItem = action.payload;
-      console.log(newItem)
       const existingItem=cart.list.find((item)=>item.id===newItem.id);
       if(existingItem){
         existingItem.quantity++;

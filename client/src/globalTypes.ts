@@ -36,6 +36,7 @@ export type productTypes = {
   stock:number;
   id: string;
   _id: string;
+  img:string;
   categories?: string[];
   sizes: string[];
   variants: string[];
@@ -47,6 +48,7 @@ export type inputs = {
   name: string;
   price: number;
   stock:number;
+  img:string;
   description:string,
   sizes: {
     label: String;
@@ -60,6 +62,7 @@ export type inputs = {
     label: String;
     value: String;
   }[];
+
 };
 
 export type selectedValue = {

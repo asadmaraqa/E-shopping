@@ -11,8 +11,9 @@ const AddProduct = () => {
   const [inputs, setInputs] = useState<inputs>({
     name: "",
     price: 0,
-    stock:0,
-    description:"",
+    stock: 0,
+    description: "",
+    img: "",
     sizes: [{ label: "", value: "" }],
     variants: [{ label: "", value: "" }],
     categories: [{ label: "", value: "" }],
@@ -22,25 +23,36 @@ const AddProduct = () => {
   const [selectedVariant, setSelectedVariant] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState([]);
 
-  inputs.sizes = selectedSize.map((val: selectedValue) => val.value)
-  inputs.variants = selectedVariant.map((val: selectedValue) => val.value)
-  inputs.categories = selectedCategory.map((val: selectedValue) => val.value)
+  const handlePhoto = async (e: any) => {
+    setInputs({ ...inputs, img: e.target.files[0] })
+  }
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>|React.ChangeEvent<HTMLTextAreaElement>) => {
-    const name = event.target.name;
-    const value = event.target.value;
+  const handleChange = (e: any) => {
+    const name = e.target.name;
+    const value = e.target.value;
     setInputs((values) => ({ ...values, [name]: value }))
   }
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    dispatch(addProudct(inputs))
-  }
 
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("img", inputs.img);
+    formData.append("name", inputs.name)
+    formData.append("price", inputs.price as any)
+    formData.append("stock", inputs.stock as any)
+    formData.append("description", inputs.description)
+    selectedSize.map((val: selectedValue) => formData.append("sizes", val.value as any));
+    selectedVariant.map((val: selectedValue) => formData.append("variants", val.value as any));
+    selectedCategory.map((val: selectedValue) => formData.append("categories", val.value as any));
+
+    dispatch(addProudct(formData)) 
+
+  }
   const dispatch = useDispatch();
 
   return (
-    <form onSubmit={handleSubmit} className="form">
+    <form onSubmit={handleSubmit} className="form" encType="multipart/form-data" method="post">
       <label>Name:
         <input
           type="text"
@@ -70,7 +82,7 @@ const AddProduct = () => {
           onChange={handleChange}
         />
       </label>
-      <label>Price:
+      <label>stock:
         <input
           type="number"
           name="stock"
@@ -89,6 +101,7 @@ const AddProduct = () => {
       <Select options={catergoryOptions} value={selectedCategory}
         onChange={setSelectedCategory} labelledBy="Select categroy"
         label="Categories:" />
+      <input type="file" name="img" onChange={handlePhoto} />
       <input type="submit" className='button' />
     </form>
   )

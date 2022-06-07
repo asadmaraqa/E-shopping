@@ -1,13 +1,13 @@
 import React from 'react'
 
-import AddProduct from '../components/Products/AddProduct';
 import AppBar from "../components/AppBar"
-const Profile = () => {
 
+const Profile = () => {
+  
   return (
-    <div className="page" >
+    <div className="page"  >
       <AppBar />
-      <AddProduct />
+
       </div>
   )
 }

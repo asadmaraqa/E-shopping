@@ -64,10 +64,11 @@ export const create = async (
       categories,
       variants,
       sizes,
-      img,
+
       isBanned,
       orders,
     } = req.body
+    const img = req.file?.filename
     const product = new Product({
       name,
       description,
@@ -75,12 +76,13 @@ export const create = async (
       stock,
       categories,
       variants,
-      sizes,
       img,
+      sizes,
       isBanned,
       orders,
     })
     await ProductService.create(product)
+    console.log(product)
     res.json(product)
   } catch (error) {
     if (error instanceof Error && error.name == 'ValidationError') {

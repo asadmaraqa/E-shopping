@@ -2,26 +2,24 @@ import React from "react"
 import { useNavigate} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { AppState, productTypes } from "../../../globalTypes";
+import { AppState } from "../../../globalTypes";
 import Button from '../../Button';
 import { productAdded } from '../../../redux/slices/cart';
-
 
 const DisplayProduct = () => {
 
   const products= useSelector((state: AppState) => state.products.listOne) 
-  const {name,_id:id,price,categories,stock,sizes,variants,description}:any=products
+  const {name,_id:id,price,categories,stock,sizes,variants,description,img}:any=products
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
-
   return (
     <section style={{ width: "80vw" }}>
         
       <Button title='Go back' onClick={()=>navigate("/")}/>
       <div className="product" key={name}>
         <div>
-          <img src="https://picsum.photos/400" alt={name} className="product__image" />
+          <img src={`/images/${img}`} alt={name} className="product__image" />
 
         </div>
         <div className="product_content">

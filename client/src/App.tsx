@@ -13,6 +13,7 @@ import Signin from "./pages/Signin";
 import { loadproudcts } from "./redux/slices/products";
 
 import "./App.css";
+import ModifyProduct from "./pages/AdminPages/ModifyProduct";
 
 function App() {
   const dispatch = useDispatch()
@@ -27,6 +28,7 @@ function App() {
         <Route path="profile/" element={<Profile />} />
         <Route path="addProduct/" element={<AddProduct />} />
         <Route path="editDeleteProduct/" element={<EditDeleteProduct />} />
+        <Route path="ModifyProduct/" element={<ModifyProduct />} />
 
       </Routes>
     </BrowserRouter>

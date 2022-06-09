@@ -19,8 +19,9 @@ const SearchBar = () => {
         onChange={(e) => {
           onChange(e.target.value)
         }}
+        className="searchBar__input"
       />
-      <FontAwesomeIcon icon={faSearch} />
+      <FontAwesomeIcon icon={faSearch} className="searchBar__icon"/>
     </div>
 
 

@@ -29,8 +29,7 @@ const ProductCard = ({ name, description, price, _id:id,img }: productTypes) => 
         </div>
         <div className="card_content">
           <p>{description}</p>
-
-          <p>{price}</p>
+          <p className="card__price">€{price}</p>
         </div>
         <Button title='add to cart' onClick={incrementCartItem} />
       </div>

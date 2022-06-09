@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping, faBars } from '@fortawesome/free-solid-svg-icons'
 import { Link } from "react-router-dom"
+
 import SearchBar from './SearchBar'
-
-
 import { AppState } from '../../globalTypes'
 import Cart from '../Cart'
-import { useSelector } from 'react-redux'
 import Menu from './Menu'
 
 const Header = () => {
@@ -27,8 +26,8 @@ const Header = () => {
       />
       <Link to="/"><h1 aria-label="logo">E-SHOPPING</h1></Link>
       <SearchBar aria-label="search for a product bar" />
+      <div><Link to="/signin"> <p>Sign in / sign up</p></Link></div>
       <span className="fa-layers fa-fw">
-
         <FontAwesomeIcon
           icon={faCartShopping}
           size="2x"
@@ -36,9 +35,7 @@ const Header = () => {
           onClick={() => setToggleCart(!toggleCart)}
         />
         <span className="fa-layers-counter header__badge">{quantity}</span>
-
         {toggleCart ? <Cart onClick={cartHandler} /> : ''}
-
       </span>
       {toggleMenu && <Menu onClick={menuHandler} />}
     </header>

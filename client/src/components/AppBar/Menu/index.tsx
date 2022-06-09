@@ -17,7 +17,10 @@ const Menu = ({ onClick }: { onClick: () => void }) => {
           <button onClick={()=> navigate("/addProduct")}>Add product</button>
         </li>
         <li>
-          <button onClick={()=> navigate("/editDeleteProduct")}>edit / delete products</button>
+          <button onClick={()=> navigate("/editDeleteProduct")}>Edit / Delete products</button>
+        </li>
+        <li>
+          <button onClick={()=> navigate("/ModifyProduct")}>Modify products</button>
         </li>
         <li>
           <button >Orders</button>

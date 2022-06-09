@@ -8,7 +8,6 @@ const AddProduct = () => {
     <div className="page"  >
       <AppBar />
       <AddProductForm />
-
     </div>
   )
 }

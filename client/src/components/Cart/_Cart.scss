@@ -4,11 +4,12 @@
   top: 60px;
   right: 5px;
   display: grid;
+  padding: 15px;
   grid-template-columns: repeat(auto-fit, 1fr);
   box-shadow: 1px 1px 2px 1px #888888;
 
   li {
-    padding: 30px;
+    padding: 10px;
     display: flex;
     width: 200px;
     justify-content: center;
@@ -38,5 +39,6 @@
   &__text {
     white-space: nowrap;
   }
+
 
 }

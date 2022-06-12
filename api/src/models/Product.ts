@@ -39,7 +39,6 @@ const productSchema = new mongoose.Schema({
   variants: [String],
   img: {
     type: String,
-    required: true,
   },
   orders: {
     type: [mongoose.Schema.Types.ObjectId],

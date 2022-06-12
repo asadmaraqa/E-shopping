@@ -20,10 +20,20 @@ router.post(
   passport.authenticate('google-id-token', { session: false }),
   (req, res) => {
     const user = req.user as any
-
-    const token = jwt.sign({ email: user.email, role: user.role }, JWT_SECRET, {
-      expiresIn: '1h',
-    })
+    console.log(req.user)
+    const token = jwt.sign(
+      {
+        email: user.email,
+        role: user.role,
+        firstName: user.firstName,
+        secondName: user.secondName,
+        picture: user.picture,
+      },
+      JWT_SECRET,
+      {
+        expiresIn: '1h',
+      }
+    )
     res.json({ token })
   }
 )
@@ -32,10 +42,20 @@ router.get(
   passport.authenticate('google-id-token', { session: false }),
   (req, res) => {
     const user = req.user as any
+    console.log(req.user)
 
-    const token = jwt.sign({ email: user.email, role: user.role }, JWT_SECRET, {
-      expiresIn: '1h',
-    })
+    const token = jwt.sign(
+      {
+        email: user.email,
+        role: user.role,
+        firstName: user.firstName,
+        picture: user.picture,
+      },
+      JWT_SECRET,
+      {
+        expiresIn: '1h',
+      }
+    )
     res.json({ token })
     console.log(token)
   }

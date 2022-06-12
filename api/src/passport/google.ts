@@ -12,7 +12,12 @@ const loginWithGoogle = () => {
     // },
     async (
       parsedToken: {
-        payload: { given_name: string; family_name: string; email: string }
+        payload: {
+          given_name: string
+          family_name: string
+          email: string
+          picture: string
+        }
       },
       googleID: string,
       done: Function
@@ -25,6 +30,7 @@ const loginWithGoogle = () => {
             firstName: parsedToken.payload.given_name,
             secondName: parsedToken.payload.family_name,
             email: parsedToken.payload.email,
+            picture: parsedToken.payload.picture,
           } as unknown as UserDocument
 
           const newUser = new User(userTest)

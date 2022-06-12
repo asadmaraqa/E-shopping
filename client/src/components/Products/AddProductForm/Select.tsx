@@ -13,7 +13,6 @@ const Select = ({ options, value, onChange, labelledBy, label }: selectType) => 
         value={value}
         onChange={onChange}
         labelledBy={labelledBy}
-        
       />
     </label>
   )

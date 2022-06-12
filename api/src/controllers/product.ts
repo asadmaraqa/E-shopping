@@ -56,30 +56,10 @@ export const create = async (
   next: NextFunction
 ) => {
   try {
-    const {
-      name,
-      description,
-      price,
-      stock,
-      categories,
-      variants,
-      sizes,
-
-      isBanned,
-      orders,
-    } = req.body
     const img = req.file?.filename
     const product = new Product({
-      name,
-      description,
-      price,
-      stock,
-      categories,
-      variants,
+      ...req.body,
       img,
-      sizes,
-      isBanned,
-      orders,
     })
     await ProductService.create(product)
     console.log(product)
@@ -114,9 +94,18 @@ export const updateProduct = async (
   next: NextFunction
 ) => {
   try {
-    const update = req.body
+    const info = req.body
+
+    console.log(req.file?.filename)
     const productId = req.params.productId
-    res.json(ProductService.updateProduct(productId, update))
+    const updates = {
+      ...info,
+    }
+    if (req.file) {
+      const img = req.file.filename
+      updates.img = img
+    }
+    res.json(ProductService.updateProduct(productId, updates))
   } catch (error) {
     if (error instanceof Error && error.name == 'ValidationError') {
       next(new BadRequestError('Invalid Request', error))

@@ -11,6 +11,7 @@ export type UserDocument = Document & {
   isBanned: boolean
   orders: string[]
   createdAt: number
+  picture: string
 }
 
 const userSchema = new mongoose.Schema(
@@ -58,6 +59,9 @@ const userSchema = new mongoose.Schema(
     isBanned: {
       type: Boolean,
       default: false,
+    },
+    picture: {
+      type: String,
     },
     orders: {
       type: [mongoose.Schema.Types.ObjectId],

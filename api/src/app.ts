@@ -9,6 +9,7 @@ import loginRouter from './routers/login'
 import apiErrorHandler from './middlewares/apiErrorHandler'
 import apiContentType from './middlewares/apiContentType'
 import passport from 'passport'
+import verifyAuth from './middlewares/verifyAuth'
 
 dotenv.config({ path: '.env' })
 const app = express()
@@ -23,7 +24,11 @@ app.use(express.json())
 app.use(passport.initialize())
 app.use('/images', express.static('public/uploads'))
 // Set up routers
-
+app.post('/verify-token', verifyAuth, (req, res) => {
+  const user = req.user
+  console.log(user)
+  res.json({ user })
+})
 app.use('/api/v1/products', productRouter)
 app.use('/api/v1/users', userRouter)
 app.use('/api/v1/orders', orderRouter)

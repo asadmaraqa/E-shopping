@@ -1,14 +1,22 @@
 
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import AppBar from '../../components/AppBar';
 
-import ModifyProductTable from '../../components/Products/ModifyProductTable'
+import ModifyProductForm from '../../components/Products/ModifyProductForm'
+import { getByIda } from '../../redux/slices/products';
 
 const ModifyProduct = () => {
+  const { productId } = useParams();
+
+  const dispatch = useDispatch()
+
+  useEffect(()=>{ dispatch(getByIda(productId))},[])
   return (
     <div className="page">
       <AppBar />
-      <ModifyProductTable />
+      <ModifyProductForm />
     </div>)
 }
 

@@ -15,10 +15,21 @@ const slice = createSlice({
       users.list = action.payload;
       users.loading = false;
     },
+    usersBanned: (users:any, action) => {
+      console.log(action.payload)
+      const index = users.list.findIndex((user:any) => user._id === action.payload._id);
+      users.list[index].isBanned = action.payload.isBanned;
+    },
+    userDeleted: (users, action) => {
+      console.log(action.payload)
+      users.list = users.list.filter(
+        (user: any) => user._id !== action.payload
+      );
+    },
   },
 });
 
-export const { usersReceived, usersRequested } = slice.actions;
+export const { usersReceived, usersRequested,usersBanned,userDeleted } = slice.actions;
 export default slice.reducer;
 
 
@@ -29,4 +40,17 @@ export const loadUsers = () =>
     url,
     onStart: usersRequested.type,
     onSuccess: usersReceived.type,
+  });
+  export const banUser = (userId: string,banState:boolean) =>
+  apiCallBegan({
+    url: url + "/" + userId,
+    method: "patch",
+    data:{isBanned:banState},
+    onSuccess: usersBanned.type,
+  });
+  export const deleteUser = (userId: string) =>
+  apiCallBegan({
+    url: url + "/" + userId,
+    method: "delete",
+    onSuccess:userDeleted.type
   });

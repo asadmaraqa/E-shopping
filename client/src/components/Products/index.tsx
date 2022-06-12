@@ -3,17 +3,15 @@ import { useSelector } from 'react-redux';
 import ProductCard from '../ProductCard'
 import { AppState, productTypes } from '../../globalTypes';
 
-
-
 const Products = () => {
-  const porducts = useSelector((state: AppState) => state.products)
- 
+  const products = useSelector((state: AppState) => state.products)
+
   return (
     <div className="products">
-        {!porducts.loading&&porducts.listAll.map((product: productTypes) =>
+      {products.loading ? <h1>Loading</h1>:""}
+        {!products.loading&&products.listAll.map((product: productTypes) =>
               <ProductCard {...product} key={product._id} />
         )}
-
     </div>
   )
 }

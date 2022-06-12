@@ -37,9 +37,7 @@ const slice = createSlice({
       );
     },
     productModified: (products, action) => {
-      products.listAll = products.listAll.filter(
-        (product: any) => product._id !== action.payload
-      );
+    console.log(action.payload)
     },
   },
 });
@@ -87,10 +85,12 @@ export const deleteproduct = (productId: any) =>
     url: url + "/" + productId,
     method: "delete",
   });
-export const modifyProduct = (product: Object) =>
+export const modifyProduct = (product:any,_id:any) =>
   apiCallBegan({
-    url,
-    method: "put",
-    data: product,
+    url: url + "/" + _id,
+    method: "patch",
+    data:product,
+    onStart: productsRequested.type,
+
     onSuccess: productModified.type,
   });

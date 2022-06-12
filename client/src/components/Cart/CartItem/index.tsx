@@ -4,12 +4,12 @@ import { useDispatch } from 'react-redux';
 import { productTypes } from '../../../globalTypes';
 import { productAdded, productRemoved } from '../../../redux/slices/cart';
 
-const CartItem = ({ name, price, quantity, totalPrice, id }: productTypes) => {
+const CartItem = ({ name, price, quantity, totalPrice, _id }: productTypes) => {
   const dispatch = useDispatch();
   const incrementCartItem = () => {
     dispatch(productAdded({
       name,
-      id,
+      _id,
       price,
 
     }))
@@ -26,7 +26,7 @@ const CartItem = ({ name, price, quantity, totalPrice, id }: productTypes) => {
           =
           <p>€{totalPrice}</p>
         </div>
-        <div className="cartItem__controlers">  <button onClick={() => dispatch(productRemoved(id))}>-</button>
+        <div className="cartItem__controlers">  <button onClick={() => dispatch(productRemoved(_id))}>-</button>
           <p> {quantity}</p>
           <button onClick={incrementCartItem}>+</button></div>
 

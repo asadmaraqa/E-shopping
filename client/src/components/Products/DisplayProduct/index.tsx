@@ -9,7 +9,7 @@ import { productAdded } from '../../../redux/slices/cart';
 const DisplayProduct = () => {
 
   const products= useSelector((state: AppState) => state.products.listOne) 
-  const {name,_id:id,price,categories,stock,sizes,variants,description,img}:any=products
+  const {name,_id,price,categories,stock,sizes,variants,description,img}:any=products
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
@@ -39,7 +39,7 @@ const DisplayProduct = () => {
               <option value={variant} key={variant}>{variant}</option>)}
           </select>
           <p>{description}</p>
-          <div> <Button title='Add to cart'  onClick={()=>dispatch(productAdded({name,id,price}))} /></div>
+          <div> <Button title='Add to cart'  onClick={()=>dispatch(productAdded({name,_id,price}))} /></div>
         </div>
         
       </div>

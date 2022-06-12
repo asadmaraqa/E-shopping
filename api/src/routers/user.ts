@@ -15,7 +15,7 @@ router.post('/', createUser)
 router.get('/me', findOne)
 
 router.get('/:userId', findById)
-router.put('/:userId', updateUser)
+router.patch('/:userId', updateUser)
 router.delete('/:userId', deleteUser)
 
 export default router

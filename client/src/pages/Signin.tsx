@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
-
-import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google'
-import Can from '../components/can'
-import { userAdded } from '../redux/slices/auth'
 import jwtDecode from 'jwt-decode'
+import {useNavigate} from "react-router-dom"
+import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google'
+import AppBar from "../components/AppBar"
+
+import Can from '../components/can'
+import { userAdded } from '../redux/slices/users'
 const Signin=()=> {
   const [token, setToken] = useState('')
   const dispatch= useDispatch()
-
+  const navigate = useNavigate()
   const handleSucess = async (googleResponse: any) => {
     const tokenId = googleResponse.credential
     console.log(jwtDecode(tokenId))
@@ -29,7 +31,7 @@ const Signin=()=> {
     if (token !=="")  localStorage.setItem('myData', token)
     const decoded:any = jwtDecode(token)
     dispatch(userAdded(decoded))
-
+      navigate("/")
   }
 
 
@@ -48,17 +50,12 @@ const Signin=()=> {
     }
   }
   return (
-    <div className="App">
-
+    <div className="page">
+      <AppBar />
         <GoogleOAuthProvider clientId={clientId}>
           <GoogleLogin onSuccess={handleSucess} />
         </GoogleOAuthProvider>
-        <Can role="user" perform="products:get" yes={()=> (<button
-          
-          onClick={handleGetMovies}
-        >
-          GET Products
-        </button>)} />
+       
        
     </div>
   )

@@ -27,7 +27,18 @@ const findByName = async (productName: string): Promise<ProductDocument[]> => {
       },
     },
     { $sort: { name: 1 } },
-    { $project: { name: 1, description: 1, variants: 1, sizes: 1, _id: 0 } },
+    {
+      $project: {
+        name: 1,
+        description: 1,
+        variants: 1,
+        sizes: 1,
+        img: 1,
+        price: 1,
+        stock: 1,
+        _id: 1,
+      },
+    },
   ])
 
   if (!foundProduct || foundProduct.length === 0) {

@@ -7,8 +7,9 @@ import { catergoryOptions, sizeOptions, variantOptions } from '../AddProductForm
 import Select from '../AddProductForm/Select';
 
 const ModifyProductForm = () => {
-  const products= useSelector((state: AppState) => state.products.listOne) 
-  const {name,_id,price,categories,stock,sizes,variants,description,img}:any=products
+  const [success,setSuccess] =useState(false);
+  const products = useSelector((state: AppState) => state.products.listOne)
+  const { name, _id, price, categories, stock, sizes, variants, description, img }: any = products
   const [inputs, setInputs] = useState<inputs>({
     name: "",
     price: 0,
@@ -34,28 +35,25 @@ const ModifyProductForm = () => {
     setInputs((values) => ({ ...values, [name]: value }))
   }
 
-console.log(inputs.name)
   const handleSubmit = (e: any) => {
     e.preventDefault();
     const formData = new FormData();
-    if (inputs.img !== "") {formData.append("img", inputs.img);}
-console.log(inputs.img)
+    if (inputs.img !== "") { formData.append("img", inputs.img); }
     if (inputs.name !== "") formData.append("name", inputs.name)
-
     if (inputs.price !== 0) formData.append("price", inputs.price as any)
     if (inputs.stock !== 0) formData.append("stock", inputs.stock as any)
     if (inputs.description !== "") formData.append("description", inputs.description)
-    console.log(selectedSize)
-    selectedSize.map((val: selectedValue) => {if (val.value !== null) formData.append("sizes", val.value as any)});
-    selectedVariant.map((val: selectedValue) => {if (val.value !== null) formData.append("variants", val.value as any)});
-    selectedCategory.map((val: selectedValue) => {if (val.value !== null) formData.append("categories", val.value as any)});
-    dispatch(modifyProduct(formData,_id)) 
-    for (const value of formData.entries()) {
-      console.log(value);
-    }  }
+    selectedSize.map((val: selectedValue) => { if (val.value !== null) formData.append("sizes", val.value as any) });
+    selectedVariant.map((val: selectedValue) => { if (val.value !== null) formData.append("variants", val.value as any) });
+    selectedCategory.map((val: selectedValue) => { if (val.value !== null) formData.append("categories", val.value as any) });
+    dispatch(modifyProduct(formData, _id))
+    setSuccess(true)
+  }
   const dispatch = useDispatch();
-console.log(_id)
   return (
+    <>
+        {success?<h1>Product modified</h1>:""}
+
     <form onSubmit={handleSubmit} className="form" encType="multipart/form-data" method="post">
       <label>Name:
         <input
@@ -64,7 +62,7 @@ console.log(_id)
           value={inputs.name}
           onChange={handleChange}
           placeholder={name}
-          
+
         />
       </label>
       <label>Description:
@@ -73,7 +71,7 @@ console.log(_id)
           value={inputs.description}
           onChange={handleChange}
           placeholder={description}
-          
+
         />
       </label>
       <label>Price:
@@ -106,6 +104,7 @@ console.log(_id)
       <input type="file" name="img" onChange={handlePhoto} />
       <input type="submit" className='button' />
     </form>
+    </>
   )
 }
 

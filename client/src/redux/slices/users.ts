@@ -5,7 +5,10 @@ const slice = createSlice({
   name: "users",
   initialState: {
     list: [],
+    listOne:[],
+    currentUser:[],
     loading: false,
+    
   },
   reducers: {
     usersRequested: (users, action) => {
@@ -16,7 +19,7 @@ const slice = createSlice({
       users.loading = false;
     },
     usersBanned: (users:any, action) => {
-      console.log(action.payload)
+      
       const index = users.list.findIndex((user:any) => user._id === action.payload._id);
       users.list[index].isBanned = action.payload.isBanned;
     },
@@ -26,10 +29,24 @@ const slice = createSlice({
         (user: any) => user._id !== action.payload
       );
     },
+    userAdded: (users: any, action) => {
+      users.currentUser= users.list.filter((user:any) => user.email==action.payload.email)
+    },
+    userModified: (users: any, action) => {
+      const index = users.list.findIndex((user:any) => user._id === action.payload._id);
+      users.list[index]=action.payload
+
+      users.currentUser[0] =action.payload
+    },
+    getById: (user, action) => {
+      user.listOne = action.payload;
+      user.loading = false;
+
+    },
   },
 });
 
-export const { usersReceived, usersRequested,usersBanned,userDeleted } = slice.actions;
+export const { usersReceived, usersRequested,usersBanned,userDeleted,userAdded,userModified,getById } = slice.actions;
 export default slice.reducer;
 
 
@@ -53,4 +70,17 @@ export const loadUsers = () =>
     url: url + "/" + userId,
     method: "delete",
     onSuccess:userDeleted.type
+  });
+  export const modifyUser = (userId?: string,userInfo?:any) =>
+  apiCallBegan({
+    url: url + "/" + userId,
+    method: "patch",
+    data:userInfo,
+    onSuccess:userModified.type
+    
+  });
+  export const getByIda = (userId?: string) =>
+  apiCallBegan({
+    url: url + "/" + userId,
+    onSuccess: getById.type,
   });

@@ -16,7 +16,7 @@ const DisplayProduct = () => {
   return (
     <section style={{ width: "80vw" }}>
         
-      <Button title='Go back' onClick={()=>navigate("/")}/>
+      <Button title='Go back' className="button" onClick={()=>navigate("/")}/>
       <div className="product" key={name}>
         <div>
           <img src={`/images/${img}`} alt={name} className="product__image" />
@@ -39,7 +39,7 @@ const DisplayProduct = () => {
               <option value={variant} key={variant}>{variant}</option>)}
           </select>
           <p>{description}</p>
-          <div> <Button title='Add to cart'  onClick={()=>dispatch(productAdded({name,_id,price}))} /></div>
+          <div> <Button title='Add to cart' className="button"  onClick={()=>dispatch(productAdded({name,_id,price}))} /></div>
         </div>
         
       </div>

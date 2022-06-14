@@ -32,7 +32,7 @@ const Can = ({ perform, yes, no }: any) => {
   const handleVerifyToken = async () => {
     const token = window.localStorage.getItem('myData') || ''
     console.log('token:', token)
-
+    if(token){
     const response = await axios.post(
       'http://localhost:5000/verify-token',
       {},
@@ -44,15 +44,17 @@ const Can = ({ perform, yes, no }: any) => {
     )
     console.log('response:', userRole)
     setUserRole(response.data.user.role.toLowerCase())
-  }
+  }}
+
 
   useEffect(() => {
     handleVerifyToken()
-  }, [])
+  }, [perform])
 
   if (!userRole) return <p>Loading...</p>
 
   return check(RBAC_RULES, userRole, perform) ? yes() : no()
+  
 }
 
 Can.defaultProps = {

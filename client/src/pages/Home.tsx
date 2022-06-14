@@ -4,7 +4,6 @@ import Products from '../components/Products';
 
 const Home = () => {
   
-
   return (
     <div className="page">
       <AppBar />

@@ -4,12 +4,13 @@ type buttonProps = {
   title: string
   onClick?: Function
   disable?: boolean
+  className:string
 }
-const Button = ({ title, onClick, disable }: buttonProps) => {
+const Button = ({ title, onClick, className }: buttonProps) => {
   
   return (
     <button
-      className={disable ? 'button__disable' : 'button'}
+      className={className}
       onClick={(e) => {onClick?.(); e.preventDefault(); e.stopPropagation()}}
     >
       {title}

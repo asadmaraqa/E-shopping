@@ -3,6 +3,10 @@ import GoogleStrategy from 'passport-google-id-token'
 
 import User, { UserDocument } from '../models/User'
 import UserService from '../services/user'
+const isAdmin = (domain: string) => {
+  if (domain !== 'integrify.io') return false
+  return true
+}
 
 const loginWithGoogle = () => {
   return new GoogleStrategy(
@@ -31,6 +35,7 @@ const loginWithGoogle = () => {
             secondName: parsedToken.payload.family_name,
             email: parsedToken.payload.email,
             picture: parsedToken.payload.picture,
+            role: 'user',
           } as unknown as UserDocument
 
           const newUser = new User(userTest)

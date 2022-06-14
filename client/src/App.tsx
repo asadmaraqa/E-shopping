@@ -1,6 +1,6 @@
 
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import AddProduct from "./pages/AdminPages/AddProduct";
@@ -15,24 +15,32 @@ import "./App.css";
 import ModifyProduct from "./pages/AdminPages/ModifyProduct";
 import Can from "./components/can";
 import Users from "./pages/AdminPages/Users";
+import SearchContext from "./context/searchContext";
+import { loadUsers } from "./redux/slices/users";
+import ModifyUser from "./pages/UserPages/ModifyUser";
 
 function App() {
-  const dispatch = useDispatch()
+  const [input, setInput] = useState('')
 
-  const currentRole = useSelector((state: any) => state.auth.list[0].role)
-  dispatch(loadproudcts())
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(loadproudcts())
+  }, [dispatch])
+  useEffect(()=>{   dispatch(loadUsers())},[])
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="product/:productId" element={<Product />} />
-        <Route path="signin/" element={<Signin />} />
-        <Route path="profile/" element={<Can role={currentRole} perform="profile:get" yes={()=>(<Profile />)} no={()=>(<p>no</p>)}/>}  />
-        <Route path="addProduct/" element={<Can role="admin" perform="products:add" yes={()=>(<AddProduct />)} no={()=>(<p>no</p>)}/>} />
-        <Route path="ModifyProduct/:productId" element={<Can role="admin" perform="products:edit" yes={()=>(<ModifyProduct />)} no={()=>(<p>no</p>)}/>}  />
-        <Route path="Users/" element={<Can role="user" perform="users:get" yes={()=>(<Users />)} no={()=>(<p>no</p>)}/>}  />
-
-      </Routes>
+      <SearchContext.Provider value={{ input, onChange: setInput }}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="product/:productId" element={<Product />} />
+          <Route path="signin/" element={<Signin />} />
+          <Route path="profile/" element={<Can role={"user" || "admin"} perform="profile:get" yes={() => (<Profile />)} no={() => (<p>no</p>)} />} />
+          <Route path="addProduct/" element={<Can role="admin" perform="products:add" yes={() => (<AddProduct />)} no={() => (<p>no</p>)} />} />
+          <Route path="ModifyProduct/:productId" element={<Can role="admin" perform="products:edit" yes={() => (<ModifyProduct />)} no={() => (<p>no</p>)} />} />
+          <Route path="Users/" element={<Can role="admin" perform="users:get" yes={() => (<Users />)} no={() => (<p>no</p>)} />} />
+          <Route path="modifyUser/:userId" element={<Can role={"user" || "admin"} perform="user:edit" yes={() => (<ModifyUser />)} no={() => (<p>no</p>)} />} />
+        </Routes>
+      </SearchContext.Provider>
     </BrowserRouter>
   )
 }

@@ -10,26 +10,39 @@ const slice = createSlice({
   initialState: {
     listAll: [],
     listOne: [],
+    search:[],
     loading: false,
+    error:false,
+    errorName:""
   },
   reducers: {
     productsRequested: (products, action) => {
       products.loading = true;
+      products.error = false;
+
     },
     productsRequestFailed: (products, action) => {
       products.loading = false;
+      products.errorName=action.payload
+      products.error = true;
+      products.search =[];
     },
     productsReceived: (products, action) => {
       products.listAll = action.payload;
       products.loading = false;
+      products.error = false;
+
     },
     getById: (products, action) => {
       products.listOne = action.payload;
       products.loading = false;
+      products.error = false;
+
     },
-    productUploaded: (products: productSliceTypes, action) => {
+    productUploaded: (products: any, action) => {
       products.listAll.push(action.payload);
       products.loading = false;
+      products.error = false;
     },
     productDeleted: (products, action) => {
       products.listAll = products.listAll.filter(
@@ -38,6 +51,12 @@ const slice = createSlice({
     },
     productModified: (products, action) => {
     console.log(action.payload)
+    },
+    Searched: (products:any, action) => {
+      products.search = action.payload;
+      products.error = false;
+      products.loading = false;
+
     },
   },
 });
@@ -50,6 +69,7 @@ export const {
   productUploaded,
   productDeleted,
   productModified,
+  Searched,
 } = slice.actions;
 export default slice.reducer;
 
@@ -90,7 +110,16 @@ export const modifyProduct = (product:any,_id:any) =>
     url: url + "/" + _id,
     method: "patch",
     data:product,
-    onStart: productsRequested.type,
 
     onSuccess: productModified.type,
   });
+
+
+export const fetchSearch = (productName:any) =>
+apiCallBegan({
+ url: url + "/search/" + productName,
+ data:{productName},
+  onStart: productsRequested.type,
+  onSuccess: Searched.type,
+  onError:  productsRequestFailed.type,
+});

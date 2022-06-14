@@ -4,7 +4,7 @@ import mongoose, { Document } from 'mongoose'
 export type UserDocument = Document & {
   firstName: string
   secondName: string
-  address: { city: string; street: string }
+  address: string
   phone: number
   email: string
   role: boolean
@@ -30,16 +30,9 @@ const userSchema = new mongoose.Schema(
       maxlength: 10,
     },
     address: {
-      city: {
-        type: String,
-        minlength: 2,
-        maxlength: 15,
-      },
-      street: {
-        type: String,
-        minlength: 2,
-        maxlength: 15,
-      },
+      type: String,
+      minlength: 2,
+      maxlength: 15,
     },
     phone: {
       type: Number,

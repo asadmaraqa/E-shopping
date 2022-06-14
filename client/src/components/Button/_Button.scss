@@ -2,6 +2,17 @@
 
 .button {
   background-color: green;
+  &__delete{
+    @extend .button;
+
+    background-color: red;
+  }
+
+  &__modify{
+    @extend .button;
+
+    background-color: blue;
+  }
   box-sizing: border-box;
   color: #FFFFFF;
   font-size: 16px;
@@ -18,17 +29,5 @@
   &:hover {
     background-color: greenyellow;
   }
-  &__disable{
-    background-color: grey;
-  box-sizing: border-box;
-  color: #FFFFFF;
-  font-size: 16px;
-  justify-content: center;
-  padding: 0.5rem 1rem;
-  width: fit-content;;
-  touch-action: manipulation;
-  white-space: nowrap;
-  margin-top: 20px;
-  align-items: center;
-  }
+  
 }

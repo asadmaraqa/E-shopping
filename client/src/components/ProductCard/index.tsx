@@ -34,9 +34,9 @@ const ProductCard = ({ name, description, price, _id, img }: productTypes) => {
           <p>{description}</p>
           <p className="card__price">€{price}</p>
         </div>
-        <Button title='add to cart' onClick={incrementCartItem} />
-        <Can role="admin" perform="products:delete" yes={() => <Button title='delete' onClick={handleDispatch} />} />
-        <Can role="admin" perform="products:edit" yes={() => <Button title='modify' onClick={() => navigate(`/ModifyProduct/${_id}`)} />} />
+        <Button title='add to cart' className="button" onClick={incrementCartItem} />
+        <Can role="admin" perform="products:delete" yes={() => <Button title='delete' className="button__delete" onClick={handleDispatch} />} />
+        <Can role="admin" perform="products:edit" yes={() => <Button title='modify' className="button__modify" onClick={() => navigate(`/ModifyProduct/${_id}`)} />} />
       </div>
     </Link>
 

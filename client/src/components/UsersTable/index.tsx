@@ -5,7 +5,7 @@ import TableRow from './TableRow'
 const UsersTable = () => {
 
   const users = useSelector((state: any) => state.users)
-  
+
   return (
     <table>
       <tbody>
@@ -25,7 +25,7 @@ const UsersTable = () => {
         </tr>
         {!users.loading && users.list.map((user: any) =>
           <>
-            <TableRow {...user} key={user._id} />
+            <TableRow {...user} key={user._id}  />
           </>
         )}
       </tbody>

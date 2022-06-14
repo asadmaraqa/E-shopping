@@ -96,7 +96,6 @@ export const updateProduct = async (
   try {
     const info = req.body
 
-    console.log(req.file?.filename)
     const productId = req.params.productId
     const updates = {
       ...info,
@@ -105,7 +104,9 @@ export const updateProduct = async (
       const img = req.file.filename
       updates.img = img
     }
-    res.json(ProductService.updateProduct(productId, updates))
+    const updatedProduct = ProductService.updateProduct(productId, updates)
+
+    res.json(updatedProduct)
   } catch (error) {
     if (error instanceof Error && error.name == 'ValidationError') {
       next(new BadRequestError('Invalid Request', error))

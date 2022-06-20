@@ -1,4 +1,3 @@
-
 .header {
   display: grid;
   grid-template-columns: min-content 0.3fr 0.5fr 0.3fr min-content;
@@ -32,6 +31,7 @@
     top: 60px;
     padding: 20px;
     box-shadow: 1px 1px 2px 1px #888888;
+
     li {
       padding: 20px;
     }

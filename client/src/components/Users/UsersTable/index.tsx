@@ -1,10 +1,11 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { AppState, userTypes } from '../../../globalTypes'
 import TableRow from './TableRow'
 
 const UsersTable = () => {
 
-  const users = useSelector((state: any) => state.users)
+  const users = useSelector((state: AppState) => state.users)
 
   return (
     <table>
@@ -23,7 +24,7 @@ const UsersTable = () => {
           <th>Edit</th>
           <th>Ban</th>
         </tr>
-        {!users.loading && users.list.map((user: any) =>
+        {!users.loading && users.list.map((user: userTypes) =>
           <>
             <TableRow {...user} key={user._id}  />
           </>

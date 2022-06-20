@@ -1,10 +1,12 @@
 import React from "react"
 import { useSelector } from 'react-redux';
-import ProductCard from '../ProductCard'
-import { AppState, productTypes } from '../../globalTypes';
+
+import ProductCard from './ProductCard'
+import { productInit, productTypes } from '../../globalTypes';
 
 const Products = () => {
-  const products = useSelector((state: any) => state.products)
+
+  const products = useSelector((state: productInit) => state.products)
   const searchUndefined = products.search[0] === undefined
 
   return (

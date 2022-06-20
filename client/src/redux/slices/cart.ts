@@ -1,18 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-
-type cartTypes={
-  list:{
-    quantity:number
-    totalPrice?:number
-    
-    _id:string
-    price?:number
-    name:string
-  }[] 
-  totalquantity:number
-
-}
+import { cartTypes } from "../../globalTypes";
 
 const slice = createSlice({
   name: "cart",
@@ -50,10 +37,12 @@ const slice = createSlice({
         existingItem.quantity--;
         existingItem.totalPrice-=existingItem.price
       }
+    },
+    cartRefreshed:(cart:cartTypes)=>{
+      cart.list=[]
     }
-    
   },
 });
 
-export const { productAdded,productRemoved } = slice.actions;
+export const { productAdded,productRemoved,cartRefreshed } = slice.actions;
 export default slice.reducer;

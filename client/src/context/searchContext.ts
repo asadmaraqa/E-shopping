@@ -1,9 +1,5 @@
 import { createContext } from 'react'
-
-export interface searchContextProps {
-  onChange: any
-  input: any
-}
+import { searchContextProps } from '../globalTypes'
 
 const SearchContext = createContext({
   onChange: '',

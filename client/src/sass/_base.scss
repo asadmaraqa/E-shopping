@@ -21,11 +21,11 @@ html {
   margin: auto;
   display: grid;
   grid-template-columns: 90vw;
-  grid-template-rows: min-content 1fr;
+  grid-template-rows: min-content 70vh min-content;;
   grid-template-areas:
     "header"
-    "countries";
-  gap: 3rem;
+    "products";
+  gap: 1rem;
 
   box-sizing: border-box;
   background-color:"white";

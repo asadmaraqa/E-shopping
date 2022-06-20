@@ -1,12 +1,13 @@
 @use"./base";
 @use "../components/AppBar/SearchBar/SearchBar";
 @use "../components/AppBar/AppBar";
-@use "../components/ProductCard/prdouctCards";
+@use "../components/Products/ProductCard/prdouctCards";
 @use "../components/Button/Button";
 @use "../components/Products/DisplayProduct/DisplayProduct";
 @use "../components/Cart/Cart";
 @use "../components/Products/Products";
 @use "../components/Cart/CartItem/CartItem";
 @use "../components/Products/AddProductForm/AddProduct";
-@use "../components/UsersTable/UserTable";
+@use "../components/Users/UsersTable/UserTable";
+@use "../components/Footer/Footer";
 

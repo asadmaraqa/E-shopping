@@ -20,7 +20,6 @@ router.post(
   passport.authenticate('google-id-token', { session: false }),
   (req, res) => {
     const user = req.user as any
-    console.log(req.user)
     const token = jwt.sign(
       {
         email: user.email,
@@ -42,7 +41,6 @@ router.get(
   passport.authenticate('google-id-token', { session: false }),
   (req, res) => {
     const user = req.user as any
-    console.log(req.user)
 
     const token = jwt.sign(
       {
@@ -57,7 +55,6 @@ router.get(
       }
     )
     res.json({ token })
-    console.log(token)
   }
 )
 

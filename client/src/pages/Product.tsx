@@ -6,17 +6,19 @@ import { useDispatch } from 'react-redux';
 import { getByIda } from '../redux/slices/products';
 import AppBar from '../components/AppBar';
 import DisplayProduct from "../components/Products/DisplayProduct"
+import Footer from '../components/Footer';
 
 const Product = () => {
   const { productId } = useParams();
 
   const dispatch = useDispatch()
 
-  useEffect(()=>{ dispatch(getByIda(productId))},[])
+  dispatch(getByIda(productId))
   return (
     <div className="page">
       <AppBar />
       <DisplayProduct />
+      <Footer />
     </div>
 
   )

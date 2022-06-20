@@ -7,7 +7,6 @@ const Select = ({ options, value, onChange, labelledBy, label }: selectType) => 
   return (
     <label>
       {label}
-
       <MultiSelect
         options={options}
         value={value}

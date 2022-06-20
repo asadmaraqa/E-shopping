@@ -116,5 +116,4 @@ export const deleteUser = async (
 
 export const findOne = async (email: string): Promise<UserDocument | null> => {
   return UserService.findOne(email)
-  console.log(UserService.findOne(email))
 }

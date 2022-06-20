@@ -26,7 +26,6 @@ app.use('/images', express.static('public/uploads'))
 // Set up routers
 app.post('/verify-token', verifyAuth, (req, res) => {
   const user = req.user
-  console.log(user)
   res.json({ user })
 })
 app.use('/api/v1/products', productRouter)

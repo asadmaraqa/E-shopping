@@ -62,7 +62,6 @@ export const create = async (
       img,
     })
     await ProductService.create(product)
-    console.log(product)
     res.json(product)
   } catch (error) {
     if (error instanceof Error && error.name == 'ValidationError') {

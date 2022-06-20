@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { addProudct, modifyProduct } from '../../../redux/slices/products';
-import { AppState, inputs, selectedValue } from '../../../globalTypes';
+import { modifyProduct } from '../../../redux/slices/products';
+import { AppState, inputs, productTypes, selectedValue } from '../../../globalTypes';
 import { catergoryOptions, sizeOptions, variantOptions } from '../AddProductForm/options';
 import Select from '../AddProductForm/Select';
 
 const ModifyProductForm = () => {
-  const [success,setSuccess] =useState(false);
+  const [success, setSuccess] = useState(false);
   const products = useSelector((state: AppState) => state.products.listOne)
-  const { name, _id, price, categories, stock, sizes, variants, description, img }: any = products
+  const { name, _id, price, stock, description, } = products as unknown as productTypes
   const [inputs, setInputs] = useState<inputs>({
     name: "",
     price: 0,
@@ -25,17 +25,17 @@ const ModifyProductForm = () => {
   const [selectedVariant, setSelectedVariant] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState([]);
 
-  const handlePhoto = async (e: any) => {
+  const handlePhoto = async (e: any ) => {
     setInputs({ ...inputs, img: e.target.files[0] })
   }
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
     const name = e.target.name;
     const value = e.target.value;
     setInputs((values) => ({ ...values, [name]: value }))
   }
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData();
     if (inputs.img !== "") { formData.append("img", inputs.img); }
@@ -52,58 +52,59 @@ const ModifyProductForm = () => {
   const dispatch = useDispatch();
   return (
     <>
-        {success?<h1>Product modified</h1>:""}
 
-    <form onSubmit={handleSubmit} className="form" encType="multipart/form-data" method="post">
-      <label>Name:
-        <input
-          type="text"
-          name="name"
-          value={inputs.name}
-          onChange={handleChange}
-          placeholder={name}
 
-        />
-      </label>
-      <label>Description:
-        <textarea
-          name="description"
-          value={inputs.description}
-          onChange={handleChange}
-          placeholder={description}
+      <form onSubmit={handleSubmit} className="form" encType="multipart/form-data" method="post">
+        {success ? <h2>Product modified</h2> : ""}
+        <label>Name:
+          <input
+            type="text"
+            name="name"
+            value={inputs.name}
+            onChange={handleChange}
+            placeholder={name}
 
-        />
-      </label>
-      <label>Price:
-        <input
-          type="number"
-          name="price"
-          value={inputs.price || ""}
-          placeholder={price}
-          onChange={handleChange}
-        />
-      </label>
-      <label>stock:
-        <input
-          type="number"
-          name="stock"
-          value={inputs.stock || ""}
-          placeholder={stock}
-          onChange={handleChange}
-        />
-      </label>
-      <Select options={sizeOptions} value={selectedSize}
-        onChange={setSelectedSize} labelledBy="Select size"
-        label="sizes:" />
-      <Select options={variantOptions} value={selectedVariant}
-        onChange={setSelectedVariant} labelledBy="Select variant"
-        label="Variants:" />
-      <Select options={catergoryOptions} value={selectedCategory}
-        onChange={setSelectedCategory} labelledBy="Select categroy"
-        label="Categories:" />
-      <input type="file" name="img" onChange={handlePhoto} />
-      <input type="submit" className='button' />
-    </form>
+          />
+        </label>
+        <label>Description:
+          <textarea
+            name="description"
+            value={inputs.description}
+            onChange={handleChange}
+            placeholder={description}
+
+          />
+        </label>
+        <label>Price:
+          <input
+            type="number"
+            name="price"
+            value={inputs.price || ""}
+            placeholder={String(price)}
+            onChange={handleChange}
+          />
+        </label>
+        <label>stock:
+          <input
+            type="number"
+            name="stock"
+            value={inputs.stock || ""}
+            placeholder={String(stock)}
+            onChange={handleChange}
+          />
+        </label>
+        <Select options={sizeOptions} value={selectedSize}
+          onChange={setSelectedSize} labelledBy="Select size"
+          label="sizes:" />
+        <Select options={variantOptions} value={selectedVariant}
+          onChange={setSelectedVariant} labelledBy="Select variant"
+          label="Variants:" />
+        <Select options={catergoryOptions} value={selectedCategory}
+          onChange={setSelectedCategory} labelledBy="Select categroy"
+          label="Categories:" />
+        <input type="file" name="img" onChange={handlePhoto} />
+        <input type="submit" className='button' />
+      </form>
     </>
   )
 }

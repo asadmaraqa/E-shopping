@@ -3,16 +3,15 @@ import { useEffect, useState } from 'react'
 
 import { RBAC_RULES } from '../roles'
 
-const check = (rules: any, role: any, action: any) => {
+
+const check = (rules: any, role: string, action: string) => {
   const permissions = rules[role]
   if (!permissions) {
-    // role is not present in the rules
     return false
   }
 
   const staticPermissions = permissions.view
   if (staticPermissions && staticPermissions.includes(action)) {
-    // static rule not provided for action
     return true
   }
   const dynamicPermissions = permissions.actions
@@ -28,10 +27,10 @@ const check = (rules: any, role: any, action: any) => {
 }
 
 const Can = ({ perform, yes, no }: any) => {
+
   const [userRole, setUserRole] = useState('')
   const handleVerifyToken = async () => {
     const token = window.localStorage.getItem('myData') || ''
-    console.log('token:', token)
     if(token){
     const response = await axios.post(
       'http://localhost:5000/verify-token',
@@ -42,16 +41,14 @@ const Can = ({ perform, yes, no }: any) => {
         },
       }
     )
-    console.log('response:', userRole)
     setUserRole(response.data.user.role.toLowerCase())
   }}
 
 
   useEffect(() => {
     handleVerifyToken()
-  }, [perform])
+  }, [])
 
-  if (!userRole) return <p>Loading...</p>
 
   return check(RBAC_RULES, userRole, perform) ? yes() : no()
   

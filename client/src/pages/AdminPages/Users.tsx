@@ -1,15 +1,16 @@
-import axios from 'axios'
 import React from 'react'
+
 import AppBar from '../../components/AppBar';
-import UsersTable from '../../components/UsersTable';
+import Footer from '../../components/Footer';
+import UsersTable from '../../components/Users/UsersTable';
 
 const Users = () => {
-  
 
   return (
     <div className="page">
       <AppBar />
       <UsersTable />
+      <Footer />
     </div>
   )
 }

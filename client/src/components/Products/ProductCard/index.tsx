@@ -2,11 +2,11 @@ import React from 'react'
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from "react-router-dom";
 
-import { productTypes } from '../../globalTypes'
-import { productAdded } from '../../redux/slices/cart';
-import { deleteproduct, productDeleted } from '../../redux/slices/products';
-import Button from '../Button';
-import Can from '../can';
+import { productTypes } from '../../../globalTypes'
+import { productAdded } from '../../../redux/slices/cart';
+import { deleteproduct, productDeleted } from '../../../redux/slices/products';
+import Button from '../../Button';
+import Can from '../../can';
 
 const ProductCard = ({ name, description, price, _id, img }: productTypes) => {
   const dispatch = useDispatch();
@@ -31,7 +31,7 @@ const ProductCard = ({ name, description, price, _id, img }: productTypes) => {
           <h2 className="card__name">{name}</h2>
         </div>
         <div className="card_content">
-          <p>{description}</p>
+          <p>{description.substring(1, 100)} ...</p>
           <p className="card__price">€{price}</p>
         </div>
         <Button title='add to cart' className="button" onClick={incrementCartItem} />

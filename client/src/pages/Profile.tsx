@@ -1,20 +1,18 @@
 import React from 'react'
 
 import AppBar from "../components/AppBar"
-import jwt_decode from "jwt-decode";
-import UserCard from '../components/UserCard';
+import Footer from '../components/Footer';
+import UserCard from '../components/Users/UserCard';
 
 const Profile = () => {
-  const token:any = localStorage.getItem('myData')
-  let UserDecoded: any
-  if(token !==null) UserDecoded = jwt_decode(token)
 
-  console.log(token)
   return (
     <div className="page"  >
       <AppBar />
-        <UserCard {...UserDecoded}/>
-      </div>
+      <UserCard />
+      <Footer/>
+
+    </div>
   )
 }
 

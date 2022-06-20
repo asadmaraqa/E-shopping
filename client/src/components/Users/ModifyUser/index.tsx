@@ -33,7 +33,7 @@ const ModifyUserForm = () => {
     if (input.phone !== 0) formData.append("phone", input.phone as any)
     if (input.address !== "") formData.append("address", input.address)
 
-    dispatch(modifyUser(filtered[0]._id, input))
+    dispatch(modifyUser(filtered._id, input))
   }
 
   return (

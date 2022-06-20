@@ -6,20 +6,18 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AddProduct from "./pages/AdminPages/AddProduct";
 
 import Home from "./pages/Home";
+
 import Product from "./pages/Product";
 import Profile from "./pages/Profile";
 import Signin from "./pages/Signin";
 import { loadproudcts } from "./redux/slices/products";
-
-import "./App.css";
 import ModifyProduct from "./pages/AdminPages/ModifyProduct";
 import Can from "./components/can";
 import Users from "./pages/AdminPages/Users";
 import SearchContext from "./context/searchContext";
 import ModifyUser from "./pages/UserPages/ModifyUser";
-import { loadUsers, userAdded } from "./redux/slices/users";
-import jwtDecode from "jwt-decode";
 import NotAuthorised from "./components/NotAuthorised";
+import "./App.css";
 
 function App() {
   const [input, setInput] = useState('')

@@ -70,4 +70,4 @@ INSERT INTO orders_product(order_id,product_id)VALUES(1,2)
 
 	SELECT name AS product_name,CONCAT(firstName,' ',secondName) as full_name,price,phone,address FROM orders_product
 		JOIN order on order.id = orders_product.order_id JOIN product ON product.id =orders_product.product_id
-		"user" ON "user".id =orders.user_id;
+		"user" ON "user".id =order.user_id;

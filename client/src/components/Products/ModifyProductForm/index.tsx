@@ -10,10 +10,10 @@ const ModifyProductForm = () => {
   const [success, setSuccess] = useState(false);
   const products = useSelector((state: AppState) => state.products.listOne)
   const { name, _id, price, stock, description, } = products as any[""]
-  const [inputs, setInputs] = useState<Inputs>({
+  const [inputs, setInputs] = useState<any>({
     name: "",
-    price: 0,
-    stock: 0,
+    price: "",
+    stock: "",
     description: "",
     img: "",
     sizes: [{ label: "", value: "" }],
@@ -32,7 +32,7 @@ const ModifyProductForm = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
     const name = e.target.name;
     const value = e.target.value;
-    setInputs((values) => ({ ...values, [name]: value }))
+    setInputs((values:any) => ({ ...values, [name]: value }))
   }
 
   const handleSubmit = (e: any) => {
@@ -40,8 +40,9 @@ const ModifyProductForm = () => {
     const formData = new FormData();
     if (inputs.img !== "") { formData.append("img", inputs.img); }
     if (inputs.name !== "") formData.append("name", inputs.name)
-    if (inputs.price !== 0) formData.append("price", inputs.price as any)
-    if (inputs.stock !== 0) formData.append("stock", inputs.stock as any)
+    if (inputs.price !== "") formData.append("price", inputs.price.toString())
+    if (inputs.stock !== "") formData.append("stock", inputs.stock.toString())
+    console.log(typeof inputs.stock)
     if (inputs.description !== "") formData.append("description", inputs.description)
     selectedSize.map((val: SelectedValue) => { if (val.value !== null) formData.append("sizes", JSON.stringify(val['value'])) });
     selectedVariant.map((val: SelectedValue) => { if (val.value !== null) formData.append("variants", JSON.stringify(val['value']))});

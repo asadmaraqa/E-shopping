@@ -1,14 +1,14 @@
 /* eslint-disable no-dupe-keys */
 import axios from "axios";
 import { Dispatch } from "redux";
-import { actionApiType, actionTypes } from "../../globalTypes";
+import { ActionApiType } from "../../globalTypes";
 import * as actions from "../actions/api";
 
 
 const api =
   ({ dispatch }:any) =>
   (next:Dispatch) =>
-  async (action: actionApiType) => {
+  async (action: ActionApiType) => {
     
     if (action.type !== actions.apiCallBegan.type) return next(action);
 

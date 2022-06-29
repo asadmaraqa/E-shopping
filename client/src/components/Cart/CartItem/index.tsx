@@ -2,10 +2,10 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
 
-import { productTypes } from '../../../globalTypes';
+import { ProductTypes } from '../../../globalTypes';
 import { productAdded, productRemoved } from '../../../redux/slices/cart';
 
-const CartItem = ({ name, price, quantity, totalPrice, _id }: productTypes) => {
+const CartItem = ({ name, price, quantity, totalPrice, _id }: ProductTypes) => {
   const dispatch = useDispatch();
   const incrementCartItem = () => {
     dispatch(productAdded({

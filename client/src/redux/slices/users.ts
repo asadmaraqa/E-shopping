@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { initStateUsers, userTypes } from "../../globalTypes";
+import { InitStateUsers, UserTypes } from "../../globalTypes";
 import { apiCallBegan } from "../actions/api";
 
 const slice = createSlice({
@@ -19,21 +19,21 @@ const slice = createSlice({
       users.list = action.payload;
       users.loading = false;
     },
-    usersBanned: (users:initStateUsers, action) => {
+    usersBanned: (users:InitStateUsers, action) => {
       const index = users.list.findIndex((user:any) => user._id === action.payload._id);
       users.list[index].isBanned = action.payload.isBanned;
 
     },
     userDeleted: (users, action) => {
       users.list = users.list.filter(
-        (user: userTypes) => user._id !== action.payload
+        (user: UserTypes) => user._id !== action.payload
       );
     },
-    userAdded: (users: initStateUsers, action) => {
-      users.currentUser= users.list.filter((user:userTypes) => user.email===action.payload.email)
+    userAdded: (users: InitStateUsers, action) => {
+      users.currentUser= users.list.filter((user:UserTypes) => user.email===action.payload.email)
     },
-    userModified: (users: initStateUsers, action) => {
-      const index = users.list.findIndex((user:userTypes) => user._id === action.payload._id);
+    userModified: (users: InitStateUsers, action) => {
+      const index = users.list.findIndex((user:UserTypes) => user._id === action.payload._id);
       users.list[index]=action.payload
       users.currentUser[0] =action.payload
     },

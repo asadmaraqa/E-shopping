@@ -3,15 +3,15 @@ import jwtDecode from 'jwt-decode'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import { AppState, userTypes } from '../../../globalTypes'
+import { AppState, UserTypes } from '../../../globalTypes'
 import Button from '../../Button'
 
 
 const UserCard = () => {
 
   const token = localStorage.getItem("myData") as string;
-  let user: userTypes;
-  if(token !==""||undefined)user = jwtDecode(token)
+  let user: UserTypes;
+  if(token) user = jwtDecode(token)
   const navigate= useNavigate()
   const userData = useSelector((state: AppState) => state.users.list)
   const [filtered] = userData.filter((userF) => user.email===userF.email)

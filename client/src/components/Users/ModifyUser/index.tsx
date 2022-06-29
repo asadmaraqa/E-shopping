@@ -1,29 +1,30 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom'
 
-import { AppState, userTypes } from '../../../globalTypes';
+import { AppState, UserTypes } from '../../../globalTypes';
 import { modifyUser } from '../../../redux/slices/users';
 
 const ModifyUserForm = () => {
   const { userId } = useParams();
   const user = useSelector((state: AppState) => state.users.list)
-  const [filtered] = user.filter((userF:userTypes)=>userId===userF._id)
+  const [filtered] = user.filter((userF:UserTypes)=>userId===userF._id)
 
-  const [input, useInput] = useState({
+  const [input, setInput] = useState({
     firstName: filtered.firstName,
     secondName: filtered.secondName,
     phone: filtered.phone,
     address: filtered.address
   });
 
+
   const handleChange = (e: any) => {
     const name = e.target.name;
     const value = e.target.value
-
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    useInput((values) => ({ ...values, [name]: value }))
+  
+    setInput((values) => ({ ...values, [name]: value }))
   }
+
   const dispatch = useDispatch()
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

@@ -34,11 +34,11 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="product/:productId" element={<Product />} />
           <Route path="signin/" element={<Signin />} />
-          <Route path="profile/" element={<Can role={"user" || "admin"} perform="profile:get" yes={() => (<Profile />)} no={() => (<NotAuthorised/>)} />} />
+          <Route path="profile/" element={<Can role={['user', 'admin']} perform="profile:get" yes={() => (<Profile />)} no={() => (<NotAuthorised/>)} />} />
           <Route path="addProduct/" element={<Can role="admin" perform="products:add" yes={() => (<AddProduct />)} no={() => (<NotAuthorised/>)} />} />
           <Route path="ModifyProduct/:productId" element={<Can role="admin" perform="products:edit" yes={() => (<ModifyProduct />)} no={() => (<NotAuthorised/>)} />} />
           <Route path="Users/" element={<Can role="admin" perform="users:get" yes={() => (<Users />)} no={() => (<NotAuthorised/>)} />} />
-          <Route path="modifyUser/:userId" element={<Can role={"user" || "admin"} perform="user:edit" yes={() => (<ModifyUser />)} no={() => (<NotAuthorised/>)} />} />
+          <Route path="modifyUser/:userId" element={<Can role={['user', 'admin']} perform="user:edit" yes={() => (<ModifyUser />)} no={() => (<NotAuthorised/>)} />} />
 
         </Routes>
       </SearchContext.Provider>

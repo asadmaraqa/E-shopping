@@ -2,15 +2,15 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { modifyProduct } from '../../../redux/slices/products';
-import { AppState, inputs, productTypes, selectedValue } from '../../../globalTypes';
+import { AppState, Inputs, ProductTypes, SelectedValue } from '../../../globalTypes';
 import { catergoryOptions, sizeOptions, variantOptions } from '../AddProductForm/options';
 import Select from '../AddProductForm/Select';
 
 const ModifyProductForm = () => {
   const [success, setSuccess] = useState(false);
   const products = useSelector((state: AppState) => state.products.listOne)
-  const { name, _id, price, stock, description, } = products as unknown as productTypes
-  const [inputs, setInputs] = useState<inputs>({
+  const { name, _id, price, stock, description, } = products as any[""]
+  const [inputs, setInputs] = useState<Inputs>({
     name: "",
     price: 0,
     stock: 0,
@@ -35,7 +35,7 @@ const ModifyProductForm = () => {
     setInputs((values) => ({ ...values, [name]: value }))
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     const formData = new FormData();
     if (inputs.img !== "") { formData.append("img", inputs.img); }
@@ -43,9 +43,9 @@ const ModifyProductForm = () => {
     if (inputs.price !== 0) formData.append("price", inputs.price as any)
     if (inputs.stock !== 0) formData.append("stock", inputs.stock as any)
     if (inputs.description !== "") formData.append("description", inputs.description)
-    selectedSize.map((val: selectedValue) => { if (val.value !== null) formData.append("sizes", val.value as any) });
-    selectedVariant.map((val: selectedValue) => { if (val.value !== null) formData.append("variants", val.value as any) });
-    selectedCategory.map((val: selectedValue) => { if (val.value !== null) formData.append("categories", val.value as any) });
+    selectedSize.map((val: SelectedValue) => { if (val.value !== null) formData.append("sizes", JSON.stringify(val['value'])) });
+    selectedVariant.map((val: SelectedValue) => { if (val.value !== null) formData.append("variants", JSON.stringify(val['value']))});
+    selectedCategory.map((val: SelectedValue) => { if (val.value !== null) formData.append("categories", JSON.stringify(val['value'])) });
     dispatch(modifyProduct(formData, _id))
     setSuccess(true)
   }

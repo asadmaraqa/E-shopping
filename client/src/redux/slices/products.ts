@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { productSliceTypes, productTypes } from "../../globalTypes";
+import { ProductSliceTypes, ProductTypes } from "../../globalTypes";
 import { apiCallBegan } from "../actions/api";
 
 const slice = createSlice({
@@ -29,21 +29,21 @@ const slice = createSlice({
       products.error = false;
     },
     getById: (products, action) => {
-      products.listOne = action.payload;
+      if(products.loading&&products.listOne!==[]) products.listOne = action.payload;
       products.loading = false;
       products.error = false;
     },
-    productUploaded: (products: productSliceTypes, action) => {
+    productUploaded: (products: ProductSliceTypes, action) => {
       products.listAll.push(action.payload);
       products.loading = false;
       products.error = false;
     },
     productDeleted: (products, action) => {
       products.listAll = products.listAll.filter(
-        (product: productTypes) => product._id !== action.payload
+        (product: ProductTypes) => product._id !== action.payload
       );
     },
-    productModified: (products: productSliceTypes, action) => {
+    productModified: (products: ProductSliceTypes, action) => {
       const index = products.listAll.findIndex(
         (product: any) => product._id === action.payload._id
       );

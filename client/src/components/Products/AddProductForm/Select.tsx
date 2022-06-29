@@ -1,9 +1,9 @@
 import React from 'react'
 import { MultiSelect } from "react-multi-select-component";
-import { selectType } from '../../../globalTypes';
+import { SelectType } from '../../../globalTypes';
 
 
-const Select = ({ options, value, onChange, labelledBy, label }: selectType) => {
+const Select = ({ options, value, onChange, labelledBy, label }: SelectType) => {
   return (
     <label>
       {label}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
 import jwtDecode from 'jwt-decode'
@@ -28,7 +28,7 @@ const Signin = () => {
     const token = res.data.token
     setToken(token)
 
-    if (token !== "") localStorage.setItem('myData', token)
+    if (token !== ""||token !== undefined) localStorage.setItem('myData', token)
     const decoded = jwtDecode(token)
 
       dispatch(userAdded(decoded))

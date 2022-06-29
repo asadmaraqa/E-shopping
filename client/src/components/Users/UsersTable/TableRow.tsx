@@ -3,13 +3,14 @@ import jwtDecode from 'jwt-decode'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import { userTypes } from '../../../globalTypes'
+import { UserTypes } from '../../../globalTypes'
 import { banUser, deleteUser, userAdded, userDeleted } from '../../../redux/slices/users'
 
 const token = localStorage.getItem('myData') as string
 let decoded:object;
-if(token !==""||undefined)decoded = jwtDecode(token)
-const TableRow = ({_id,firstName,secondName,email,picture,role,createdAt,updatedAt,isBanned}:userTypes) => {
+if(token)decoded = jwtDecode(token)
+
+const TableRow = ({_id,firstName,secondName,email,picture,role,createdAt,updatedAt,isBanned}:UserTypes) => {
   const dispatch=useDispatch()
   const handleDelete=()=>{
     dispatch(deleteUser(_id))

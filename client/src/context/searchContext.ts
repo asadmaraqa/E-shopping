@@ -1,8 +1,8 @@
 import { createContext } from 'react'
-import { searchContextProps } from '../globalTypes'
+import { SearchContextProps } from '../globalTypes'
 
 const SearchContext = createContext({
   onChange: '',
-} as searchContextProps)
+} as SearchContextProps)
 
 export default SearchContext

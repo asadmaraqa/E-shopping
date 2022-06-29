@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping, faBars } from '@fortawesome/free-solid-svg-icons'
-import { Link, Navigate, useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 import SearchBar from './SearchBar'
 import { AppState } from '../../globalTypes'
@@ -17,15 +17,15 @@ const Header = () => {
   const menuHandler = () => setToggleMenu(!toggleMenu)
   const cartHandler = (): void => setToggleCart(!toggleCart)
   const quantity = useSelector((state: AppState) => state.cart.totalquantity)
-  let token = localStorage.getItem('myData')
   const navigate=useNavigate()
-
     const handleClear=()=>{
       localStorage.clear()
       setShowResults(null)
       navigate("/")
     }
-
+    const handleSetToggleCart =()=>{
+      setToggleCart(!toggleCart)
+    }
   return (
     <header className="header">
       <FontAwesomeIcon
@@ -45,10 +45,10 @@ const Header = () => {
           icon={faCartShopping}
           size="2x"
           className="header__icon-cart"
-          onClick={() => setToggleCart(!toggleCart)}
+          onClick={handleSetToggleCart}
         />
         <span className="fa-layers-counter header__badge">{quantity}</span>
-        {toggleCart ? <Cart onClick={cartHandler} /> : ''}
+        {toggleCart && <Cart onClick={cartHandler} /> }
       </span>
       {toggleMenu && <Menu onClick={menuHandler} />}
     </header>

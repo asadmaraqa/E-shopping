@@ -1,21 +1,21 @@
 export type AppState = {
-  products: initStateProducts;
-  cart: initStateCart;
-  users: initStateUsers;
+  products: InitStateProducts;
+  cart: InitStateCart;
+  users: InitStateUsers;
 };
 
-export type initStateProducts = {
+export type InitStateProducts = {
   listAll: [];
   listOne: [];
   loading: boolean;
   error: string;
 };
-export type initStateUsers = {
+export type InitStateUsers = {
   list: any[];
-  currentUser: userTypes[];
+  currentUser: UserTypes[];
   loading: boolean;
 };
-export type userTypes = {
+export type UserTypes = {
   firstName: string;
   secondName: string;
   picture: string;
@@ -28,29 +28,29 @@ export type userTypes = {
   isBanned: boolean;
   _id: string;
 };
-export type buttonProps = {
+export type ButtonProps = {
   title: string;
   onClick?: Function;
   disable?: boolean;
   className: string;
 };
-export type initStateCart = {
+export type InitStateCart = {
   list: [];
   loading: boolean;
   error: string;
   totalquantity: Number;
   totalPrice: number;
 };
-export type productInit = {
+export type ProductInit = {
   products: {
     loading: boolean;
     error: boolean;
     errorName: string;
-    search: productTypes[];
-    listAll: productTypes[];
+    search: ProductTypes[];
+    listAll: ProductTypes[];
   };
 };
-export type actionTypes = {
+export type ActionTypes = {
   type: string;
   payload: {
     url: string;
@@ -62,7 +62,7 @@ export type actionTypes = {
   };
 };
 
-export type productTypes = {
+export type ProductTypes = {
   name: string;
   description: string;
   price: number;
@@ -77,7 +77,7 @@ export type productTypes = {
   totalPrice: number;
 };
 
-export type inputs = {
+export type Inputs = {
   name: string;
   price: number;
   stock: number;
@@ -97,17 +97,17 @@ export type inputs = {
   }[];
 };
 
-export type selectedValue = {
+export type SelectedValue = {
   value: { label: String; value: String };
 };
-export type selectType = {
+export type SelectType = {
   options: { value: string; label: string }[];
   value: { value: string; label: string }[];
   onChange: Object;
   labelledBy: string;
   label: string;
 };
-export type actionApiType = {
+export type ActionApiType = {
   type: any;
   payload: {
     url: string;
@@ -118,11 +118,11 @@ export type actionApiType = {
     onStart: object[];
   };
 };
-export type searchContextProps = {
+export type SearchContextProps = {
   onChange: any;
   input: string;
 };
-export type cartTypes = {
+export type CartTypes = {
   list: {
     quantity: number;
     totalPrice?: number;
@@ -132,12 +132,12 @@ export type cartTypes = {
   }[];
   totalquantity: number;
 };
-export type productSliceTypes = {
+export type ProductSliceTypes = {
   listAll: object[];
   loading: boolean;
   error: boolean;
 };
-export type searchBarTypes = {
+export type SearchBarTypes = {
   list: string[];
   loading: boolean;
   error: boolean;

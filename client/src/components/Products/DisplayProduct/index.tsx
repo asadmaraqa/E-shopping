@@ -1,19 +1,25 @@
-import React from "react"
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect } from "react"
+import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { AppState, productTypes } from "../../../globalTypes";
+import { AppState, ProductTypes } from "../../../globalTypes";
 import Button from '../../Button';
 import { productAdded } from '../../../redux/slices/cart';
+import { getByIda } from "../../../redux/slices/products";
 
 const DisplayProduct = () => {
 
-  const products = useSelector((state: AppState) => state.products.listOne)
-  const { name, _id, price, categories, stock, sizes, variants, description, img } = products as unknown as productTypes
-  
-  const navigate = useNavigate();
-  const nameUpperCase = name ? name.toUpperCase() : ""
+  const { productId } = useParams();
   const dispatch = useDispatch();
+  const products:any[""] = useSelector((state: AppState) =>state.products.listOne)
+  useEffect(()=>{   
+      dispatch(getByIda(productId))
+  },[dispatch])
+  console.log(products)
+
+  const { name, _id, price, categories, stock, sizes, variants, description, img } = products
+  const navigate = useNavigate();
+  const nameUpperCase = name && name.toUpperCase() 
   return (
     <section style={{ width: "80vw" }}>
       <div className="product__category">

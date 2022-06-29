@@ -2,13 +2,13 @@ import React from 'react'
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from "react-router-dom";
 
-import { productTypes } from '../../../globalTypes'
+import { ProductTypes } from '../../../globalTypes'
 import { productAdded } from '../../../redux/slices/cart';
 import { deleteproduct, productDeleted } from '../../../redux/slices/products';
 import Button from '../../Button';
 import Can from '../../can';
 
-const ProductCard = ({ name, description, price, _id, img }: productTypes) => {
+const ProductCard = ({ name, description, price, _id, img }: ProductTypes) => {
   const dispatch = useDispatch();
   const incrementCartItem = () => {
     dispatch(productAdded({

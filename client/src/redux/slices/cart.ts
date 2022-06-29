@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { cartTypes } from "../../globalTypes";
+import { CartTypes } from "../../globalTypes";
 
 const slice = createSlice({
   name: "cart",
@@ -9,7 +9,7 @@ const slice = createSlice({
     totalquantity: 0,
   },
   reducers: {
-    productAdded: (cart:cartTypes, action) => {
+    productAdded: (cart:CartTypes, action) => {
       const newItem = action.payload;
       const existingItem=cart.list.find((item)=>item._id===newItem._id);
       if(existingItem){
@@ -27,7 +27,7 @@ const slice = createSlice({
         cart.totalquantity++
       }
     },
-    productRemoved:(cart:cartTypes,action)=>{
+    productRemoved:(cart:CartTypes,action)=>{
       const _id=action.payload;
       const existingItem:any=cart.list.find((item)=>item._id===_id);
       if(existingItem.quantity===1){
@@ -38,7 +38,7 @@ const slice = createSlice({
         existingItem.totalPrice-=existingItem.price
       }
     },
-    cartRefreshed:(cart:cartTypes)=>{
+    cartRefreshed:(cart:CartTypes)=>{
       cart.list=[]
     }
   },

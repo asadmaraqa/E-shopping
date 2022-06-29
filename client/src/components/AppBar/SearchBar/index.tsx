@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
@@ -10,9 +10,11 @@ import SearchContext from '../../../context/searchContext'
 const SearchBar = () => {
   const { onChange, input } = useContext(SearchContext)
   const dispatch = useDispatch()
-
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onChange(e.target.value)
+  }
+  
   if (input&&onChange) { dispatch(fetchSearch(input)) }
-
 
 return (
   <div className="searchBar">
@@ -20,16 +22,11 @@ return (
       type="text"
       placeholder="search product by name or description"
       value={input}
-      onChange={(e) => {
-        onChange(e.target.value)
-      }}
+      onChange={handleChange}
       className="searchBar__input"
     />
     <FontAwesomeIcon icon={faSearch} className="searchBar__icon" />
   </div>
-
-
-
 )
 }
 

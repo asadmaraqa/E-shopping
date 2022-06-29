@@ -1,8 +1,8 @@
 import React from 'react'
-import { buttonProps } from '../../globalTypes';
+import { ButtonProps } from '../../globalTypes';
 
 
-const Button = ({ title, onClick, className }: buttonProps) => {
+const Button = ({ title, onClick, className }: ButtonProps) => {
 
   return (
     <button

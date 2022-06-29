@@ -2,14 +2,14 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 
 import { addProudct } from '../../../redux/slices/products';
-import { inputs, selectedValue } from '../../../globalTypes';
+import { Inputs, SelectedValue } from '../../../globalTypes';
 import { catergoryOptions, sizeOptions, variantOptions } from './options';
 import Select from './Select';
 
 const AddProduct = () => {
   const [success, setSuccess] = useState(false);
 
-  const [inputs, setInputs] = useState<inputs>({
+  const [inputs, setInputs] = useState<Inputs>({
     name: "",
     price: 0,
     stock: 0,
@@ -24,7 +24,7 @@ const AddProduct = () => {
   const [selectedVariant, setSelectedVariant] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState([]);
 
-  const handlePhoto = async (e?: any) => {
+  const handlePhoto = (e: any) => {
     
     setInputs({ ...inputs, img: e.target.files[0] })
   }
@@ -44,9 +44,9 @@ const AddProduct = () => {
     formData.append("price", inputs.price as any)
     formData.append("stock", inputs.stock as any)
     formData.append("description", inputs.description)
-    selectedSize.map((val: selectedValue) => formData.append("sizes", val.value as any));
-    selectedVariant.map((val: selectedValue) => formData.append("variants", val.value as any));
-    selectedCategory.map((val: selectedValue) => formData.append("categories", val.value as any));
+    selectedSize.map((val: SelectedValue) => formData.append("sizes", val.value as any));
+    selectedVariant.map((val: SelectedValue) => formData.append("variants", val.value as any));
+    selectedCategory.map((val: SelectedValue) => formData.append("categories", val.value as any));
 
     dispatch(addProudct(formData))
     setSuccess(true)

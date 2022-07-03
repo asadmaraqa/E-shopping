@@ -31,7 +31,7 @@ const DisplayProduct = () => {
       <div className="product" key={name}>
         <div>
           <img src={`/images/${img}`} alt={name} className="product__image" />
-
+        
         </div>
         <div className="product_content">
           <h2 className="product__name">{nameUpperCase} </h2>

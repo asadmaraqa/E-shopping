@@ -1,0 +1,8 @@
+node_modules
+coverage
+.dockerignore
+.git
+.env.example
+.gitignore
+.prettierrc.js
+debug.log

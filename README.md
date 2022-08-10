@@ -6,15 +6,15 @@ E-shopping is an e-commerce website where you can search for a product in the we
 
 Frontend
 
--TypeScript
--React 
--Redux
--SASS
+- TypeScript
+- React 
+- Redux
+- SASS
 
 Backend:
 
--Express.js
--MongoDB Atlas
--Passport, goolge and jt strategy
--Jest
+- Express.js
+- MongoDB Atlas
+- Passport, goolge and jt strategy
+- Jest
 

@@ -12,6 +12,7 @@ Frontend
 -SASS
 
 Backend:
+
 -Express.js
 -MongoDB Atlas
 -Passport, goolge and jt strategy

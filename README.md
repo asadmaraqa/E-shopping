@@ -23,3 +23,4 @@ Backend:
 - Passport, goolge and jt strategy
 - Jest
 
+Latest version is deployed at https://fastidious-cannoli-fe71b6.netlify.app/
